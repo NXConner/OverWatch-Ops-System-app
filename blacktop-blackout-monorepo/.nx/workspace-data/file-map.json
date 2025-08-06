@@ -61,8 +61,87 @@
     }
   ],
   "fileMap": {
-    "projectFileMap": {},
+    "projectFileMap": {
+      "api": [
+        {
+          "file": "apps/api/package.json",
+          "hash": "13281870979990369588"
+        },
+        {
+          "file": "apps/api/project.json",
+          "hash": "18285408402076814146"
+        },
+        {
+          "file": "apps/api/src/environments/environment.prod.ts",
+          "hash": "1369436976780040082"
+        },
+        {
+          "file": "apps/api/src/environments/environment.ts",
+          "hash": "5913723651242746245"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "7117152639204388788"
+        },
+        {
+          "file": "apps/api/src/middleware/auth.ts",
+          "hash": "11843331467696050983"
+        },
+        {
+          "file": "apps/api/src/middleware/error-handler.ts",
+          "hash": "13380163043884869325"
+        },
+        {
+          "file": "apps/api/src/routes/auth.ts",
+          "hash": "16275519243833198665"
+        },
+        {
+          "file": "apps/api/src/routes/modules.ts",
+          "hash": "9490699859276145598"
+        },
+        {
+          "file": "apps/api/src/routes/overwatch.ts",
+          "hash": "16690120736336920672"
+        },
+        {
+          "file": "apps/api/src/routes/plugins.ts",
+          "hash": "4021203532985811228"
+        },
+        {
+          "file": "apps/api/src/routes/users.ts",
+          "hash": "4419864750767394242"
+        },
+        {
+          "file": "apps/api/src/services/database.ts",
+          "hash": "5010801478948906942"
+        },
+        {
+          "file": "apps/api/src/services/plugin-manager.ts",
+          "hash": "11782723827673296332"
+        },
+        {
+          "file": "apps/api/src/utils/logger.ts",
+          "hash": "1905249629653324804"
+        },
+        {
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "12674487127507862200"
+        },
+        {
+          "file": "apps/api/webpack.config.js",
+          "hash": "11901762963690569950"
+        }
+      ]
+    },
     "nonProjectFiles": [
+      {
+        "file": ".env.example",
+        "hash": "15254509580839354435"
+      },
+      {
+        "file": "README.md",
+        "hash": "1222074256305649575"
+      },
       {
         "file": "nx.json",
         "hash": "16634523959619426367"

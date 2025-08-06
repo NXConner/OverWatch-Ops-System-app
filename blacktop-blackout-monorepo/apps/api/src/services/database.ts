@@ -1,7 +1,6 @@
 import { Pool, PoolClient } from 'pg';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { migrate } from 'drizzle-kit/api';
 import { logger } from '../utils/logger';
+import { createTablesSQL, insertSampleDataSQL } from '../database/schema';
 
 interface DatabaseConfig {
   host: string;
@@ -58,14 +57,13 @@ class DatabaseServiceClass {
         database: this.config.database
       });
 
-      // Initialize Drizzle ORM
-      this.db = drizzle(this.pool);
+      // Create database schema
+      await this.createSchema();
 
-      // Enable PostGIS extensions
-      await this.enablePostGISExtensions();
-
-      // Run migrations
-      await this.runMigrations();
+      // Insert sample data for development
+      if (process.env.NODE_ENV === 'development') {
+        await this.insertSampleData();
+      }
 
       logger.info('Database initialization completed');
     } catch (error) {
@@ -74,52 +72,34 @@ class DatabaseServiceClass {
     }
   }
 
-  private async enablePostGISExtensions(): Promise<void> {
+  private async createSchema(): Promise<void> {
     try {
-      logger.info('Enabling PostGIS extensions...');
+      logger.info('Creating database schema...');
       const client = await this.getClient();
       
-      // Enable required PostGIS extensions
-      const extensions = [
-        'postgis',
-        'postgis_raster',
-        'postgis_sfcgal', 
-        'postgis_topology',
-        'pgrouting',
-        'fuzzystrmatch',
-        'address_standardizer',
-        'address_standardizer_data_us'
-      ];
-
-      for (const extension of extensions) {
-        try {
-          await client.query(`CREATE EXTENSION IF NOT EXISTS ${extension};`);
-          logger.debug(`Enabled extension: ${extension}`);
-        } catch (error) {
-          // Some extensions might not be available, log warning but continue
-          logger.warn(`Could not enable extension ${extension}:`, error);
-        }
-      }
+      await client.query(createTablesSQL);
       
       client.release();
-      logger.info('PostGIS extensions enabled successfully');
+      logger.info('Database schema created successfully');
     } catch (error) {
-      logger.error('Failed to enable PostGIS extensions:', error);
+      logger.error('Failed to create database schema:', error);
       throw error;
     }
   }
 
-  private async runMigrations(): Promise<void> {
+  private async insertSampleData(): Promise<void> {
     try {
-      logger.info('Running database migrations...');
+      logger.info('Inserting sample data...');
+      const client = await this.getClient();
       
-      // TODO: Implement migrations using drizzle-kit
-      // await migrate(this.db, { migrationsFolder: './migrations' });
+      await client.query(insertSampleDataSQL);
       
-      logger.info('Database migrations completed');
+      client.release();
+      logger.info('Sample data inserted successfully');
     } catch (error) {
-      logger.error('Failed to run migrations:', error);
-      throw error;
+      logger.error('Failed to insert sample data:', error);
+      // Don't throw error for sample data insertion
+      logger.warn('Continuing without sample data');
     }
   }
 

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Environment Settings */
+    --background: 210 30% 4%;                 /* #0A0E14 - Deep Dark */
+    --foreground: 210 40% 98%;                /* #F8FAFC - Light text */
+
+    /* Surface Colors */
+    --card: 210 30% 8%;                       /* #141A22 - Card background */
+    --card-foreground: 210 40% 98%;           /* Light text on cards */
+
+    --popover: 210 30% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 25 95% 53%;                    /* #FF8C00 - Construction Orange */
+    --primary-foreground: 210 25% 8%;         /* Dark text on orange */
+
+    --secondary: 210 30% 12%;                 /* #1F2937 - Secondary surface */
+    --secondary-foreground: 210 40% 98%;      /* Light text on secondary */
+
+    --muted: 210 30% 12%;                     /* #1F2937 - Muted elements */
+    --muted-foreground: 210 25% 70%;          /* #94A3B8 - Muted text */
+
+    --accent: 220 91% 60%;                    /* #1E90FF - Industrial Blue */
+    --accent-foreground: 210 25% 8%;         /* Dark text on blue */
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border & Input */
+    --border: 210 30% 16%;                    /* #374151 - Borders */
+    --input: 210 30% 12%;                     /* #1F2937 - Input backgrounds */
+    --ring: 25 95% 53%;                       /* Orange focus rings */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Ensure dark theme variables are consistent */
+    --background: 210 30% 4%;
+    --foreground: 210 40% 98%;
+    --card: 210 30% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 210 30% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 210 30% 4%;
+    --secondary: 210 30% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 30% 12%;
+    --muted-foreground: 210 25% 70%;
+    --accent: 220 91% 60%;
+    --accent-foreground: 210 30% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 30% 16%;
+    --input: 210 30% 12%;
+    --ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/50 rounded-md;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/70;
+  }
+}
+
+@layer components {
+  /* KPI Card Component */
+  .kpi-card {
+    @apply bg-gradient-surface border border-border rounded-lg p-6 relative overflow-hidden;
+  }
+  
+  .kpi-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-1 bg-gradient-primary;
+  }
+  
+  .kpi-value {
+    @apply text-4xl font-bold text-primary leading-none;
+  }
+  
+  .kpi-label {
+    @apply text-sm text-muted-foreground uppercase tracking-wide;
+  }
+  
+  /* Status Indicators */
+  .status-indicator {
+    @apply relative;
+  }
+  
+  .status-indicator.pulse::before {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-full h-full rounded-full bg-primary opacity-30 transform -translate-x-1/2 -translate-y-1/2 animate-pulse-glow;
+  }
+  
+  /* Enhanced Cards */
+  .card-enhanced {
+    @apply bg-gradient-surface border border-border rounded-lg shadow-industrial;
+  }
+  
+  .card-enhanced:hover {
+    @apply shadow-glow;
+  }
+  
+  /* Interactive Cards */
+  .card-interactive {
+    @apply transition-all duration-300 ease-out cursor-pointer;
+  }
+  
+  .card-interactive:hover {
+    @apply transform -translate-y-0.5 shadow-glow;
+  }
+  
+  /* Loading Animation */
+  .skeleton {
+    @apply bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%] animate-pulse;
+  }
+  
+  /* Hero Title Styling */
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-primary bg-clip-text text-transparent leading-tight;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-md border border-border/50;
+  }
+  
+  /* Data grid styling */
+  .data-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  .data-grid-wide {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+  }
+}
+
+@layer utilities {
+  /* Custom focus styles */
+  .focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  
+  /* Text utilities */
+  .text-gradient {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+  
+  /* Animation utilities */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(25 95% 53% / 0.3);
+    }
+    to {
+      box-shadow: 0 0 40px hsl(25 95% 53% / 0.6);
+    }
+  }
+  
+  /* Layout utilities */
+  .dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  .kpi-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4;
+  }
+  
+  /* Map container */
+  .map-container {
+    @apply h-96 w-full rounded-lg overflow-hidden border border-border;
+  }
+  
+  .map-container .leaflet-container {
+    @apply bg-muted;
+  }
+}
