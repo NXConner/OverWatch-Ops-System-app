@@ -24,10 +24,10 @@ export declare class AuthError extends Error {
     code: string;
     constructor(message: string, statusCode?: number, code?: string);
 }
-export declare const authMiddleware: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>;
-export declare const requireRole: (requiredRoles: string | string[]) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => void;
-export declare const requirePermission: (requiredPermissions: string | string[]) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => void;
-export declare const requireCompanyAccess: (req: AuthenticatedRequest, res: Response, next: NextFunction) => void;
+export declare const authMiddleware: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void | Response>;
+export declare const requireRole: (requiredRoles: string | string[]) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => void | Response;
+export declare const requirePermission: (requiredPermissions: string | string[]) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => void | Response;
+export declare const requireCompanyAccess: (req: AuthenticatedRequest, res: Response, next: NextFunction) => void | Response;
 export declare const generateToken: (payload: Omit<JWTPayload, "iat" | "exp">) => string;
 export declare const verifyToken: (token: string) => JWTPayload;
 export declare const refreshToken: (token: string) => string;
