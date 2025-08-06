@@ -1,18 +1,29 @@
 {
   "run": {
-    "command": "nx run-many --target=test --all",
-    "startTime": "2025-08-06T15:59:21.305Z",
-    "endTime": "2025-08-06T15:59:22.342Z",
+    "command": "nx run-many --target=build --all --verbose",
+    "startTime": "2025-08-06T16:45:18.772Z",
+    "endTime": "2025-08-06T16:45:26.960Z",
     "inner": false
   },
   "tasks": [
     {
-      "taskId": "api:test",
-      "target": "test",
+      "taskId": "api:build",
+      "target": "build",
       "projectName": "api",
-      "hash": "5815484692631065011",
-      "startTime": "2025-08-06T15:59:21.314Z",
-      "endTime": "2025-08-06T15:59:22.341Z",
+      "hash": "2823202535274423890",
+      "startTime": "2025-08-06T16:45:18.779Z",
+      "endTime": "2025-08-06T16:45:22.324Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@blacktop/web-app:build",
+      "target": "build",
+      "projectName": "@blacktop/web-app",
+      "hash": "3822265777569228649",
+      "startTime": "2025-08-06T16:45:18.779Z",
+      "endTime": "2025-08-06T16:45:26.960Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0
