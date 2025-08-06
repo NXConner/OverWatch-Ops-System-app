@@ -13,7 +13,8 @@ import {
   Target,
   Radio,
   Clock,
-  TrendingUp
+  TrendingUp,
+  Brain
 } from 'lucide-react'
 import { useTerminology } from '../contexts/TerminologyContext'
 import { useSocket } from '../contexts/SocketContext'
@@ -24,6 +25,7 @@ import { PersonnelGrid } from '../components/overwatch/PersonnelGrid'
 import { FleetStatus } from '../components/overwatch/FleetStatus'
 import { AlertsFeed } from '../components/overwatch/AlertsFeed'
 import { PavementScanWidget } from '../components/overwatch/PavementScanWidget'
+import { AIEstimatorWidget } from '../components/overwatch/AIEstimatorWidget'
 import { KPICard } from '../components/ui/KPICard'
 import { StatusIndicator } from '../components/ui/StatusIndicator'
 
@@ -214,6 +216,11 @@ export const OverWatch: React.FC = () => {
               </h2>
             </div>
             <PavementScanWidget />
+          </div>
+
+          {/* AI Estimator */}
+          <div className="card-enhanced p-6">
+            <AIEstimatorWidget />
           </div>
 
           {/* Fleet Status */}
