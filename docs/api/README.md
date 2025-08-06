@@ -33,8 +33,8 @@ Login with email and password.
 **Request Body:**
 ```json
 {
-  "email": "user@example.com",
-  "password": "password123"
+  "email": "admin@blacktopsolutions.com",
+  "password": "admin123"
 }
 ```
 
@@ -44,10 +44,10 @@ Login with email and password.
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
     "id": "uuid",
-    "email": "user@example.com",
-    "name": "John Doe",
-    "role": "operator",
-    "companyId": "uuid"
+    "email": "admin@blacktopsolutions.com",
+    "name": "System Administrator",
+    "role": "admin",
+    "companyId": "550e8400-e29b-41d4-a716-446655440001"
   }
 }
 ```

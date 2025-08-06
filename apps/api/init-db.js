@@ -45,7 +45,7 @@ INSERT INTO companies (id, name, address, phone, email) VALUES
     ('550e8400-e29b-41d4-a716-446655440001', 
      'Blacktop Solutions LLC', 
      '337 Ayers Orchard Road, Stuart, VA 24171', 
-     '(276) 555-0123', 
+     '(276) 694-2847', 
      'info@blacktopsolutions.com')
 ON CONFLICT (id) DO NOTHING;
 

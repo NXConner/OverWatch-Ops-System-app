@@ -61,8 +61,8 @@ services:
       JWT_EXPIRES_IN: 8h
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      WEATHER_API_KEY: ${WEATHER_API_KEY:-demo-key}
-      MAPS_API_KEY: ${MAPS_API_KEY:-demo-key}
+      WEATHER_API_KEY: ${WEATHER_API_KEY:-8f2a9d7c4e6b1f8a3d5c7e9b2f4a8c6d}
+      MAPS_API_KEY: ${MAPS_API_KEY:-AIzaSyB8f2a9d7c4e6b1f8a3d5c7e9b2f4a8c6d}
     ports:
       - "3333:3333"
     volumes:
