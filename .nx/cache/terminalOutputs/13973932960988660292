@@ -1,0 +1,19 @@
+
+[0m[7m[1m[31m NX [39m[22m[27m[0m  [31mCannot find module 'jest'[39m
+
+Require stack:
+- /workspace/node_modules/@nx/jest/src/executors/jest/jest.impl.js
+- /workspace/node_modules/nx/src/config/schema-utils.js
+- /workspace/node_modules/nx/src/command-line/run/executor-utils.js
+- /workspace/node_modules/nx/src/devkit-internals.js
+- /workspace/node_modules/nx/src/utils/assert-workspace-validity.js
+- /workspace/node_modules/nx/src/project-graph/build-project-graph.js
+- /workspace/node_modules/nx/src/project-graph/project-graph.js
+- /workspace/node_modules/nx/src/project-graph/file-utils.js
+- /workspace/node_modules/nx/src/utils/package-manager.js
+- /workspace/node_modules/nx/src/utils/package-json.js
+- /workspace/node_modules/nx/src/utils/print-help.js
+- /workspace/node_modules/nx/src/command-line/run/run.js
+- /workspace/node_modules/nx/bin/run-executor.js
+Pass --verbose to see the stacktrace.
+

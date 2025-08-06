@@ -31,9 +31,12 @@
     "@nx/node": "^19.8.11",
     "@nx/react": "^19.8.11",
     "@nx/vite": "^19.8.11",
+    "@nx/webpack": "^21.3.11",
     "@nx/workspace": "^19.8.11",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.10.5",
     "eslint": "^8.57.0",
+    "jest": "^30.0.5",
     "nx": "^19.8.11",
     "prettier": "^3.3.3",
     "typescript": "~5.4.5"
