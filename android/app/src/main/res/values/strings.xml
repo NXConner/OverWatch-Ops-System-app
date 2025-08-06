@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Blacktop Blackout</string>
+    <string name="title_activity_main">Blacktop Blackout</string>
+    <string name="package_name">com.blacktop.blackout</string>
+    <string name="custom_url_scheme">com.blacktop.blackout</string>
+</resources>
