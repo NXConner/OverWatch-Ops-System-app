@@ -9,6 +9,8 @@ import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
 import { OverWatch } from './pages/OverWatch'
 import { GeminiEstimator } from './pages/GeminiEstimator'
+import { AsphaltEstimator } from './pages/AsphaltEstimator'
+import { MaterialCostManager } from './pages/MaterialCostManager'
 import { BusinessLogic } from './pages/BusinessLogic'
 import { SafetyCompliance } from './pages/SafetyCompliance'
 import { Analytics } from './pages/Analytics'
@@ -47,11 +49,12 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="/overwatch" element={<OverWatch />} />
             <Route path="/gemini-estimator" element={<GeminiEstimator />} />
+            <Route path="/asphalt-estimator" element={<AsphaltEstimator />} />
             <Route path="/business-logic" element={<BusinessLogic />} />
             <Route path="/safety-compliance" element={<SafetyCompliance />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/fleet" element={<Fleet />} />
-            <Route path="/materials" element={<Materials />} />
+            <Route path="/materials" element={<MaterialCostManager />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>

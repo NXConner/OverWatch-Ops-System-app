@@ -4,6 +4,7 @@ import {
   LayoutDashboard, 
   Eye, 
   Brain,
+  Calculator,
   BarChart3, 
   Truck, 
   Package, 
@@ -43,6 +44,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         name: translate('Gemini Estimator Pro', 'AI Estimator'),
         href: '/gemini-estimator',
         icon: Brain
+      },
+      {
+        name: translate('Asphalt Estimator', 'VA Estimator'),
+        href: '/asphalt-estimator',
+        icon: Calculator
       },
       {
         name: translate('Business Logic', 'Logic Management'),

@@ -83,7 +83,7 @@
         },
         {
           "file": "apps/api/init-db-extended.js",
-          "hash": "12571119998320345892",
+          "hash": "4271574006274811507",
           "deps": [
             "npm:dotenv",
             "npm:pg"
@@ -91,7 +91,7 @@
         },
         {
           "file": "apps/api/init-db.js",
-          "hash": "10491810575623191082",
+          "hash": "2881807892588546315",
           "deps": [
             "npm:dotenv",
             "npm:pg"
@@ -103,38 +103,41 @@
         },
         {
           "file": "apps/api/package.json",
-          "hash": "3779935080490330452",
+          "hash": "13425474272660026156",
           "deps": [
-            "npm:@types/express",
-            "npm:@types/cors",
-            "npm:@types/compression",
-            "npm:@types/pg",
-            "npm:@types/jsonwebtoken",
             "npm:@types/bcryptjs",
+            "npm:@types/compression",
+            "npm:@types/cors",
+            "npm:@types/express",
+            "npm:@types/jsonwebtoken",
             "npm:@types/multer",
-            "npm:@types/uuid",
             "npm:@types/node",
             "npm:@types/node-cron",
             "npm:@types/nodemailer",
-            "npm:typescript@5.9.2",
+            "npm:@types/pg",
+            "npm:@types/uuid",
             "npm:ts-node@10.9.2",
-            "npm:express",
-            "npm:cors",
-            "npm:helmet",
-            "npm:compression",
-            "npm:dotenv",
-            "npm:pg",
-            "npm:jsonwebtoken",
+            "npm:typescript@5.9.2",
+            "npm:axios",
             "npm:bcryptjs",
+            "npm:compression",
+            "npm:cors",
+            "npm:dotenv",
+            "npm:express",
             "npm:express-rate-limit",
+            "npm:express-validator",
+            "npm:helmet",
+            "npm:html2canvas",
+            "npm:jsonwebtoken",
+            "npm:jspdf",
             "npm:multer",
-            "npm:uuid",
-            "npm:zod",
-            "npm:winston",
-            "npm:socket.io",
             "npm:node-cron",
             "npm:nodemailer",
-            "npm:axios"
+            "npm:pg",
+            "npm:socket.io",
+            "npm:uuid",
+            "npm:winston",
+            "npm:zod"
           ]
         },
         {
@@ -177,7 +180,7 @@
         },
         {
           "file": "apps/api/src/main.ts",
-          "hash": "9686167106116843822",
+          "hash": "2401033980944462421",
           "deps": [
             "npm:express",
             "npm:cors",
@@ -221,6 +224,14 @@
           ]
         },
         {
+          "file": "apps/api/src/routes/estimation.ts",
+          "hash": "6818828658285791726",
+          "deps": [
+            "npm:express",
+            "npm:express-validator"
+          ]
+        },
+        {
           "file": "apps/api/src/routes/modules.ts",
           "hash": "9490699859276145598",
           "deps": [
@@ -254,6 +265,14 @@
           "deps": [
             "npm:pg"
           ]
+        },
+        {
+          "file": "apps/api/src/services/estimation-engine.ts",
+          "hash": "11556975345455310951"
+        },
+        {
+          "file": "apps/api/src/services/pdf-export.ts",
+          "hash": "1114644638293923848"
         },
         {
           "file": "apps/api/src/services/plugin-manager.ts",
@@ -338,7 +357,7 @@
         },
         {
           "file": "apps/web-app/src/App.tsx",
-          "hash": "8866458017038912294",
+          "hash": "1808943864775978133",
           "deps": [
             "npm:react@18.3.1",
             "npm:react-router-dom",
@@ -354,7 +373,7 @@
         },
         {
           "file": "apps/web-app/src/components/Layout.tsx",
-          "hash": "10152642481056632148",
+          "hash": "10258742129631750607",
           "deps": [
             "npm:react@18.3.1",
             "npm:react-router-dom",
@@ -501,6 +520,14 @@
           ]
         },
         {
+          "file": "apps/web-app/src/pages/AsphaltEstimator.tsx",
+          "hash": "8717197067448900856",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:lucide-react"
+          ]
+        },
+        {
           "file": "apps/web-app/src/pages/BusinessLogic.tsx",
           "hash": "15541674117519106640",
           "deps": [
@@ -542,6 +569,14 @@
         {
           "file": "apps/web-app/src/pages/Login.tsx",
           "hash": "10510324024909191895",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/web-app/src/pages/MaterialCostManager.tsx",
+          "hash": "5811557782122367067",
           "deps": [
             "npm:react@18.3.1",
             "npm:lucide-react"
@@ -629,11 +664,11 @@
     "nonProjectFiles": [
       {
         "file": ".env.example",
-        "hash": "5788892625313484842"
+        "hash": "3663276039568075276"
       },
       {
         "file": ".env.production",
-        "hash": "14927535243029351161"
+        "hash": "3179210837386591589"
       },
       {
         "file": ".github/workflows/ci-cd.yml",
@@ -658,6 +693,10 @@
       {
         "file": "DATA_INTEGRATION_SUMMARY.md",
         "hash": "2745939921145534121"
+      },
+      {
+        "file": "DEPLOYMENT_STATUS.md",
+        "hash": "10644433679121750978"
       },
       {
         "file": "Dockerfile",
@@ -697,15 +736,23 @@
       },
       {
         "file": "QUICK_START.md",
-        "hash": "10534472194326533961"
+        "hash": "8667482561256826002"
       },
       {
         "file": "README.md",
-        "hash": "1222074256305649575"
+        "hash": "17956086047453008830"
+      },
+      {
+        "file": "REAL_DATA_CONFIGURATION.md",
+        "hash": "16118812037412756677"
       },
       {
         "file": "SAFETY_COMPLIANCE_GUIDE.md",
         "hash": "17126138502545823765"
+      },
+      {
+        "file": "STARTUP_SCRIPTS_SUMMARY.md",
+        "hash": "15935310138526026525"
       },
       {
         "file": "THEME_DOCUMENTATION.md",
@@ -1217,11 +1264,11 @@
       },
       {
         "file": "docker-compose.yml",
-        "hash": "12317748919047018908"
+        "hash": "16311048188982372122"
       },
       {
         "file": "docs/api/README.md",
-        "hash": "13767975978010669671"
+        "hash": "11320649839903404807"
       },
       {
         "file": "docs/deployment/DEPLOYMENT_GUIDE.md",
@@ -1241,11 +1288,23 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "3921935543390249950"
+        "hash": "11502516802746332751"
       },
       {
         "file": "package.json",
         "hash": "17590383062872731430"
+      },
+      {
+        "file": "start-blacktop.sh",
+        "hash": "10751308918152165819"
+      },
+      {
+        "file": "start.sh",
+        "hash": "10570623461431157189"
+      },
+      {
+        "file": "stop.sh",
+        "hash": "15777851879981851498"
       },
       {
         "file": "tsconfig.base.json",

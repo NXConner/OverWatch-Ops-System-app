@@ -1,4 +1,3 @@
-import { logger } from '../utils/logger';
 import { EventEmitter } from 'events';
 export interface PluginInterface {
     name: string;
@@ -17,7 +16,12 @@ export interface PluginInterface {
     getApi?(): any;
 }
 export interface PluginContext {
-    logger: typeof logger;
+    logger: {
+        info: (message: string, meta?: any) => any;
+        error: (message: string, meta?: any) => any;
+        warn: (message: string, meta?: any) => any;
+        debug: (message: string, meta?: any) => any;
+    };
     database: any;
     config: any;
     events: EventEmitter;

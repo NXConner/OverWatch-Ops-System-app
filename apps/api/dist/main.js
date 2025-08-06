@@ -21,6 +21,8 @@ const users_1 = tslib_1.__importDefault(require("./routes/users"));
 const modules_1 = tslib_1.__importDefault(require("./routes/modules"));
 const overwatch_1 = tslib_1.__importDefault(require("./routes/overwatch"));
 const plugins_1 = tslib_1.__importDefault(require("./routes/plugins"));
+const business_logic_1 = tslib_1.__importDefault(require("./routes/business-logic"));
+const estimation_1 = tslib_1.__importDefault(require("./routes/estimation"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 exports.app = app;
@@ -80,6 +82,8 @@ app.use('/api/users', auth_1.authMiddleware, users_1.default);
 app.use('/api/modules', auth_1.authMiddleware, modules_1.default);
 app.use('/api/overwatch', auth_1.authMiddleware, overwatch_1.default);
 app.use('/api/plugins', auth_1.authMiddleware, plugins_1.default);
+app.use('/api/business-logic', auth_1.authMiddleware, business_logic_1.default);
+app.use('/api/estimation', auth_1.authMiddleware, estimation_1.default);
 // Socket.IO connection handling
 io.on('connection', (socket) => {
     logger_1.logger.info(`Client connected: ${socket.id}`);

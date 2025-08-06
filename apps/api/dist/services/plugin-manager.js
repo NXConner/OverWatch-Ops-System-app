@@ -166,11 +166,22 @@ class PluginManagerClass {
     createPluginContext(pluginName) {
         return {
             logger: {
-                ...logger_1.logger,
-                info: (message, meta) => logger_1.logger.info(`[${pluginName}] ${message}`, meta),
-                error: (message, meta) => logger_1.logger.error(`[${pluginName}] ${message}`, meta),
-                warn: (message, meta) => logger_1.logger.warn(`[${pluginName}] ${message}`, meta),
-                debug: (message, meta) => logger_1.logger.debug(`[${pluginName}] ${message}`, meta)
+                info: (message, meta) => {
+                    logger_1.logger.info(`[${pluginName}] ${message}`, meta);
+                    return logger_1.logger;
+                },
+                error: (message, meta) => {
+                    logger_1.logger.error(`[${pluginName}] ${message}`, meta);
+                    return logger_1.logger;
+                },
+                warn: (message, meta) => {
+                    logger_1.logger.warn(`[${pluginName}] ${message}`, meta);
+                    return logger_1.logger;
+                },
+                debug: (message, meta) => {
+                    logger_1.logger.debug(`[${pluginName}] ${message}`, meta);
+                    return logger_1.logger;
+                }
             },
             database: null, // TODO: Provide restricted database access
             config: {},
