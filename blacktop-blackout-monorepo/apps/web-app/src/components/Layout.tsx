@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { 
   LayoutDashboard, 
   Eye, 
+  Brain,
   BarChart3, 
   Truck, 
   Package, 
@@ -37,6 +38,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       name: translate('OverWatch-Ops', 'Operations Center'), 
       href: '/overwatch', 
       icon: Eye 
+    },
+    { 
+      name: translate('Gemini Estimator Pro', 'AI Estimator'), 
+      href: '/gemini-estimator', 
+      icon: Brain 
     },
     { 
       name: translate('Analytics', 'Analytics'), 

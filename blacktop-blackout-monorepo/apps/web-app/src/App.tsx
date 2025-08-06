@@ -8,6 +8,7 @@ import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
 import { OverWatch } from './pages/OverWatch'
+import { GeminiEstimator } from './pages/GeminiEstimator'
 import { Analytics } from './pages/Analytics'
 import { Fleet } from './pages/Fleet'
 import { Materials } from './pages/Materials'
@@ -43,6 +44,7 @@ function App() {
                           <Routes>
                             <Route index element={<Dashboard />} />
                             <Route path="/overwatch" element={<OverWatch />} />
+                            <Route path="/gemini-estimator" element={<GeminiEstimator />} />
                             <Route path="/analytics" element={<Analytics />} />
                             <Route path="/fleet" element={<Fleet />} />
                             <Route path="/materials" element={<Materials />} />
