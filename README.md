@@ -1,3 +1,44 @@
+# 🛣️ Blacktop Blackout - Asphalt Maintenance Management Platform
+
+> **The complete solution for asphalt maintenance contractors to streamline operations, optimize costs, and deliver exceptional results.**
+
+## 🚀 **QUICK START - GET RUNNING IN 30 SECONDS**
+
+```bash
+# 1. Clone the repository (if not already done)
+git clone <repository-url>
+cd blacktop-blackout-monorepo
+
+# 2. Start the entire platform with one command
+./start.sh
+
+# 3. Access your application
+# Web App: http://localhost:3000
+# API: http://localhost:3333
+
+# 4. Login with default credentials
+# Admin: admin@blacktopsolutions.com / admin123
+# Manager: manager@blacktopsolutions.com / manager123
+
+# 5. Stop services when done
+./stop.sh
+```
+
+**🎯 That's it! Your asphalt maintenance management platform is now running!**
+
+---
+
+## 📋 **Available Scripts**
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `./start.sh` | 🚀 Start entire platform | One-command launch |
+| `./start-blacktop.sh` | 🔧 Advanced startup | Full control with monitoring |
+| `./stop.sh` | 🛑 Stop all services | Clean shutdown |
+| `./deploy.sh` | 🏭 Production deployment | Complete system setup |
+
+---
+
 # 🎯 Blacktop Blackout - OverWatch-Ops System
 
 > **Ultimate intelligent command center for asphalt paving business operations**

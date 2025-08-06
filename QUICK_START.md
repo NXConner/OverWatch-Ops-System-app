@@ -6,13 +6,26 @@
 # Clone and deploy the complete system
 git clone <repository-url>
 cd blacktop-blackout-monorepo
-./deploy.sh
+./start.sh
 ```
 
 **That's it!** The system will be available at:
 - **Web App**: http://localhost:3000
 - **API**: http://localhost:3333
 - **Mobile**: Built and ready for deployment
+
+### 🔧 Advanced Options
+
+```bash
+# Full monitoring and control
+./start-blacktop.sh
+
+# Production deployment
+./deploy.sh
+
+# Stop all services
+./stop.sh
+```
 
 ---
 
