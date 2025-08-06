@@ -7,7 +7,7 @@ import {
   Clock,
   Navigation,
   Shield,
-  Tool
+  Wrench
 } from 'lucide-react'
 
 interface LocationData {
@@ -311,7 +311,7 @@ export const LiveMap: React.FC = () => {
             onClick={() => setSelectedItem(`equipment-${equipment.id}`)}
           >
             <div className={`w-3 h-3 rounded-sm ${getStatusColor(equipment.status)} border border-white shadow flex items-center justify-center`}>
-              <Tool className="h-1.5 w-1.5 text-white" />
+              <Wrench className="h-1.5 w-1.5 text-white" />
             </div>
             {selectedItem === `equipment-${equipment.id}` && (
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded shadow-lg text-xs whitespace-nowrap z-10">

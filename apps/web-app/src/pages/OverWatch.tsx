@@ -165,54 +165,54 @@ export const OverWatch: React.FC = () => {
       {/* KPIs Section */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
         <KPICard
-          title={translate('Active Projects', 'Projects')}
+          label={translate('Active Projects', 'Projects')}
           value={dashboardData?.kpis.activeProjects || 0}
           icon={Target}
           trend="stable"
         />
         <KPICard
-          title={translate('Operations Today', 'Operations')}
+          label={translate('Operations Today', 'Operations')}
           value={dashboardData?.kpis.operationsToday || 0}
           icon={Activity}
           trend="up"
         />
         <KPICard
-          title={translate('Personnel Active', 'Personnel')}
+          label={translate('Personnel Active', 'Personnel')}
           value={dashboardData?.kpis.activePersonnel || 0}
           icon={Users}
           trend="stable"
         />
         <KPICard
-          title={translate('Vehicles Deployed', 'Vehicles')}
+          label={translate('Vehicles Deployed', 'Vehicles')}
           value={dashboardData?.kpis.vehiclesDeployed || 0}
           icon={Truck}
           trend="stable"
         />
         <KPICard
-          title={translate('Daily Costs', 'Costs')}
+          label={translate('Daily Costs', 'Costs')}
           value={`$${(dashboardData?.kpis.dailyCosts || 0).toFixed(2)}`}
           icon={DollarSign}
           trend="up"
         />
         <KPICard
-          title={translate('Active Alerts', 'Alerts')}
+          label={translate('Active Alerts', 'Alerts')}
           value={dashboardData?.kpis.activeAlerts || 0}
           icon={AlertTriangle}
           trend="stable"
-          variant={dashboardData?.kpis.activeAlerts && dashboardData.kpis.activeAlerts > 0 ? 'warning' : 'default'}
+
         />
         <KPICard
-          title={translate('Scans Completed', 'Scans')}
+          label={translate('Scans Completed', 'Scans')}
           value={dashboardData?.kpis.completedScans || 0}
           icon={Scan}
           trend="up"
         />
         <KPICard
-          title={translate('Defects Detected', 'Defects')}
+          label={translate('Defects Detected', 'Defects')}
           value={dashboardData?.kpis.defectsDetected || 0}
           icon={Eye}
           trend="stable"
-          variant={dashboardData?.kpis.defectsDetected && dashboardData.kpis.defectsDetected > 0 ? 'warning' : 'default'}
+
         />
       </div>
 

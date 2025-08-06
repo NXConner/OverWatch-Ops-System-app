@@ -12,7 +12,13 @@
     "dev": "nx run-many --target=serve --projects=web-app,api --parallel",
     "affected:build": "nx affected --target=build",
     "affected:test": "nx affected --target=test",
-    "affected:lint": "nx affected --target=lint"
+    "affected:lint": "nx affected --target=lint",
+    "mobile:build": "cd apps/web-app && npm run build && cd ../.. && npx cap sync",
+    "mobile:android": "npx cap open android",
+    "mobile:run-android": "npx cap run android",
+    "apk:build": "npm run mobile:build && npx cap build android",
+    "apk:debug": "npm run mobile:build && npx cap build android --prod=false",
+    "android:setup": "npx cap add android && npm run mobile:build"
   },
   "private": true,
   "devDependencies": {

@@ -4,7 +4,7 @@ import {
   Download, Search, Filter, Eye, CheckCircle, XCircle,
   Truck, HardHat, Zap, Droplets, Wind, Thermometer,
   Users, Clock, MapPin, Phone, Globe, ShoppingCart,
-  Star, Heart, Activity, Settings, Wrench, Tool
+  Star, Heart, Activity, Settings, Wrench
 } from 'lucide-react'
 import { useTerminology } from '../contexts/TerminologyContext'
 
@@ -513,7 +513,7 @@ export const SafetyCompliance: React.FC = () => {
     switch (category) {
       case 'sealcoat': return <Droplets className="h-4 w-4 text-blue-600" />
       case 'additive': return <Star className="h-4 w-4 text-yellow-600" />
-      case 'equipment': return <Tool className="h-4 w-4 text-gray-600" />
+      case 'equipment': return <Wrench className="h-4 w-4 text-gray-600" />
       case 'safety': return <HardHat className="h-4 w-4 text-red-600" />
       default: return <FileText className="h-4 w-4" />
     }
@@ -897,7 +897,7 @@ export const SafetyCompliance: React.FC = () => {
                       className="max-w-full max-h-full object-contain"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling!.style.display = 'flex';
+                        (e.currentTarget.nextElementSibling as HTMLElement)!.style.display = 'flex';
                       }}
                     />
                     <div className="hidden items-center justify-center w-full h-full">
