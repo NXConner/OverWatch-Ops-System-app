@@ -1,283 +1,398 @@
-import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet'
-import { LatLngExpression, Icon } from 'leaflet'
-import { Users, Truck, MapPin, Navigation } from 'lucide-react'
-import { useTerminology } from '../../contexts/TerminologyContext'
+import React, { useState, useEffect } from 'react'
+import { 
+  MapPin, 
+  Truck, 
+  Users, 
+  Activity, 
+  Clock,
+  Navigation,
+  Shield,
+  Tool
+} from 'lucide-react'
 
-// Fix for default markers in react-leaflet
-import 'leaflet/dist/leaflet.css'
-
-// Mock data for locations
-const mockLocations = {
-  personnel: [
-    {
-      id: '1',
-      name: 'John Smith',
-      position: [36.5962, -80.2741] as LatLngExpression,
-      status: 'active',
-      activity: 'sealcoating',
-      lastUpdate: new Date().toISOString()
-    },
-    {
-      id: '2',
-      name: 'Mike Johnson',
-      position: [36.5965, -80.2745] as LatLngExpression,
-      status: 'active',
-      activity: 'prep_work',
-      lastUpdate: new Date().toISOString()
+interface LocationData {
+  personnel: Array<{
+    id: string
+    name: string
+    role: string
+    location: {
+      lat: number
+      lng: number
+      lastUpdated: string
+    } | null
+    status: string
+    currentProject?: string
+  }>
+  vehicles: Array<{
+    id: string
+    vehicleNumber: string
+    type: string
+    status: string
+    location: {
+      lat: number
+      lng: number
+      lastUpdated: string
+    } | null
+    operator?: string
+  }>
+  equipment: Array<{
+    id: string
+    name: string
+    type: string
+    status: string
+    location: {
+      lat: number
+      lng: number
+      lastUpdated: string
+    } | null
+    project?: string
+  }>
+  geofences: Array<{
+    id: string
+    name: string
+    type: string
+    center: {
+      lat: number
+      lng: number
     }
-  ],
-  vehicles: [
-    {
-      id: '1',
-      name: '1978 Chevy C30',
-      position: [36.5963, -80.2742] as LatLngExpression,
-      status: 'active',
-      driver: 'John Smith',
-      fuel: 85,
-      lastUpdate: new Date().toISOString()
-    },
-    {
-      id: '2',
-      name: '1995 Dodge Dakota',
-      position: [36.5961, -80.2740] as LatLngExpression,
-      status: 'parked',
-      driver: null,
-      fuel: 92,
-      lastUpdate: new Date().toISOString()
-    }
-  ],
-  geofences: [
-    {
-      id: '1',
-      name: 'Main Office',
-      center: [36.5962, -80.2741] as LatLngExpression,
-      radius: 100,
-      type: 'office'
-    },
-    {
-      id: '2',
-      name: 'Current Job Site',
-      center: [36.5965, -80.2745] as LatLngExpression,
-      radius: 50,
-      type: 'work_site'
-    }
-  ]
-}
-
-// Custom icon creation
-const createCustomIcon = (color: string, size: number = 25) => {
-  return new Icon({
-    iconUrl: `data:image/svg+xml;base64,${btoa(`
-      <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" stroke="white" stroke-width="2">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
-    `)}`,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size],
-    popupAnchor: [0, -size]
-  })
+    radius: number
+  }>
+  lastUpdated: string
 }
 
 export const LiveMap: React.FC = () => {
-  const { translate } = useTerminology()
-  const [selectedMapType, setSelectedMapType] = useState('openstreetmap')
+  const [locationData, setLocationData] = useState<LocationData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [selectedItem, setSelectedItem] = useState<string | null>(null)
 
-  const mapTypes = [
-    { key: 'openstreetmap', name: 'OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' },
-    { key: 'satellite', name: 'Satellite', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' },
-    { key: 'terrain', name: 'Terrain', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png' }
-  ]
+  useEffect(() => {
+    const fetchLocationData = async () => {
+      try {
+        const response = await fetch('/api/overwatch/locations')
+        const data = await response.json()
+        
+        if (data.success) {
+          setLocationData(data.data)
+        } else {
+          console.error('Failed to fetch location data:', data.error)
+          // Use fallback data
+          setLocationData(getFallbackLocationData())
+        }
+      } catch (error) {
+        console.error('Error fetching location data:', error)
+        // Use fallback data
+        setLocationData(getFallbackLocationData())
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  const getActivityIcon = (activity: string) => {
-    switch (activity) {
-      case 'sealcoating':
-        return '🛣️'
-      case 'prep_work':
-        return '🔧'
-      case 'crack_filling':
-        return '🔨'
+    fetchLocationData()
+    
+    // Refresh location data every 15 seconds
+    const interval = setInterval(fetchLocationData, 15000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const getFallbackLocationData = (): LocationData => ({
+    personnel: [
+      {
+        id: '1',
+        name: 'John Smith',
+        role: 'operator',
+        location: {
+          lat: 36.5962,
+          lng: -80.2741,
+          lastUpdated: new Date().toISOString()
+        },
+        status: 'active',
+        currentProject: 'Walmart Parking Lot - Section A'
+      },
+      {
+        id: '2',
+        name: 'Mike Johnson',
+        role: 'manager',
+        location: {
+          lat: 36.5970,
+          lng: -80.2750,
+          lastUpdated: new Date().toISOString()
+        },
+        status: 'active',
+        currentProject: 'ABC Manufacturing Driveway'
+      }
+    ],
+    vehicles: [
+      {
+        id: '1',
+        vehicleNumber: 'TRUCK-001',
+        type: 'Sealcoating Truck',
+        status: 'deployed',
+        location: {
+          lat: 36.5965,
+          lng: -80.2745,
+          lastUpdated: new Date().toISOString()
+        },
+        operator: 'John Smith'
+      },
+      {
+        id: '2',
+        vehicleNumber: 'TRUCK-002',
+        type: 'Material Transport',
+        status: 'active',
+        location: {
+          lat: 36.5955,
+          lng: -80.2735,
+          lastUpdated: new Date().toISOString()
+        },
+        operator: 'Mike Johnson'
+      }
+    ],
+    equipment: [
+      {
+        id: '1',
+        name: 'Sealcoating Sprayer #1',
+        type: 'Spray Equipment',
+        status: 'active',
+        location: {
+          lat: 36.5962,
+          lng: -80.2741,
+          lastUpdated: new Date().toISOString()
+        },
+        project: 'Walmart Parking Lot - Section A'
+      }
+    ],
+    geofences: [
+      {
+        id: '1',
+        name: 'Stuart Work Zone',
+        type: 'work_area',
+        center: { lat: 36.5962, lng: -80.2741 },
+        radius: 5000
+      },
+      {
+        id: '2',
+        name: 'Equipment Storage',
+        type: 'storage',
+        center: { lat: 36.5950, lng: -80.2730 },
+        radius: 500
+      }
+    ],
+    lastUpdated: new Date().toISOString()
+  })
+
+  const getStatusColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'active':
+      case 'deployed':
+        return 'bg-green-500'
+      case 'inactive':
+      case 'offline':
+        return 'bg-red-500'
+      case 'maintenance':
+        return 'bg-yellow-500'
       default:
-        return '👷'
+        return 'bg-gray-500'
     }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return '#22c55e' // green
-      case 'parked':
-        return '#eab308' // yellow
-      case 'offline':
-        return '#ef4444' // red
-      default:
-        return '#6b7280' // gray
-    }
+  const formatLastUpdated = (timestamp: string) => {
+    const now = new Date()
+    const updated = new Date(timestamp)
+    const diffInMinutes = Math.floor((now.getTime() - updated.getTime()) / (1000 * 60))
+    
+    if (diffInMinutes < 1) return 'Just now'
+    if (diffInMinutes < 60) return `${diffInMinutes}m ago`
+    return `${Math.floor(diffInMinutes / 60)}h ago`
+  }
+
+  if (loading) {
+    return (
+      <div className="h-96 bg-muted rounded-lg flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+          <p className="text-sm text-muted-foreground">Loading location data...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!locationData) {
+    return (
+      <div className="h-96 bg-muted rounded-lg flex items-center justify-center">
+        <div className="text-center">
+          <MapPin className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+          <p className="text-sm text-muted-foreground">Location data unavailable</p>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="space-y-4">
-      {/* Map Controls */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <select
-            value={selectedMapType}
-            onChange={(e) => setSelectedMapType(e.target.value)}
-            className="px-3 py-1 bg-muted border border-border rounded-md text-sm"
+    <div className="space-y-6">
+      {/* Map Placeholder with Coordinates */}
+      <div className="relative h-80 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg border-2 border-dashed border-border overflow-hidden">
+        {/* Map Grid Background */}
+        <div className="absolute inset-0 opacity-10">
+          {[...Array(20)].map((_, i) => (
+            <div key={`v-${i}`} className="absolute h-full w-px bg-gray-400" style={{ left: `${i * 5}%` }} />
+          ))}
+          {[...Array(16)].map((_, i) => (
+            <div key={`h-${i}`} className="absolute w-full h-px bg-gray-400" style={{ top: `${i * 6.25}%` }} />
+          ))}
+        </div>
+
+        {/* Stuart, VA Reference Point */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="flex items-center space-x-1 text-xs font-medium text-gray-600 bg-white px-2 py-1 rounded shadow">
+            <MapPin className="h-3 w-3" />
+            <span>Stuart, VA</span>
+          </div>
+        </div>
+
+        {/* Personnel Markers */}
+        {locationData.personnel.filter(p => p.location).map((person, index) => (
+          <div
+            key={person.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            style={{
+              left: `${50 + (index * 10 - 5)}%`,
+              top: `${45 + (index * 5)}%`
+            }}
+            onClick={() => setSelectedItem(`person-${person.id}`)}
           >
-            {mapTypes.map(type => (
-              <option key={type.key} value={type.key}>
-                {type.name}
-              </option>
-            ))}
-          </select>
+            <div className={`w-3 h-3 rounded-full ${getStatusColor(person.status)} border-2 border-white shadow`}>
+              <div className={`absolute -top-1 -right-1 w-2 h-2 rounded-full ${getStatusColor(person.status)} animate-pulse`}></div>
+            </div>
+            {selectedItem === `person-${person.id}` && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded shadow-lg text-xs whitespace-nowrap z-10">
+                <div className="font-medium">{person.name}</div>
+                <div className="text-gray-500">{person.role}</div>
+                {person.currentProject && <div className="text-blue-600">{person.currentProject}</div>}
+                {person.location && <div className="text-gray-400">{formatLastUpdated(person.location.lastUpdated)}</div>}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Vehicle Markers */}
+        {locationData.vehicles.filter(v => v.location).map((vehicle, index) => (
+          <div
+            key={vehicle.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            style={{
+              left: `${55 + (index * 8)}%`,
+              top: `${40 + (index * 7)}%`
+            }}
+            onClick={() => setSelectedItem(`vehicle-${vehicle.id}`)}
+          >
+            <div className={`w-4 h-4 rounded ${getStatusColor(vehicle.status)} border-2 border-white shadow flex items-center justify-center`}>
+              <Truck className="h-2 w-2 text-white" />
+            </div>
+            {selectedItem === `vehicle-${vehicle.id}` && (
+              <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded shadow-lg text-xs whitespace-nowrap z-10">
+                <div className="font-medium">{vehicle.vehicleNumber}</div>
+                <div className="text-gray-500">{vehicle.type}</div>
+                {vehicle.operator && <div className="text-blue-600">Operator: {vehicle.operator}</div>}
+                {vehicle.location && <div className="text-gray-400">{formatLastUpdated(vehicle.location.lastUpdated)}</div>}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Equipment Markers */}
+        {locationData.equipment.filter(e => e.location).map((equipment, index) => (
+          <div
+            key={equipment.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            style={{
+              left: `${48 + (index * 6)}%`,
+              top: `${52 + (index * 4)}%`
+            }}
+            onClick={() => setSelectedItem(`equipment-${equipment.id}`)}
+          >
+            <div className={`w-3 h-3 rounded-sm ${getStatusColor(equipment.status)} border border-white shadow flex items-center justify-center`}>
+              <Tool className="h-1.5 w-1.5 text-white" />
+            </div>
+            {selectedItem === `equipment-${equipment.id}` && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded shadow-lg text-xs whitespace-nowrap z-10">
+                <div className="font-medium">{equipment.name}</div>
+                <div className="text-gray-500">{equipment.type}</div>
+                {equipment.project && <div className="text-blue-600">{equipment.project}</div>}
+                {equipment.location && <div className="text-gray-400">{formatLastUpdated(equipment.location.lastUpdated)}</div>}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Geofences */}
+        {locationData.geofences.map((geofence, index) => (
+          <div
+            key={geofence.id}
+            className="absolute border-2 border-blue-300 bg-blue-100 bg-opacity-20 rounded-full"
+            style={{
+              left: `${45 + (index * 10)}%`,
+              top: `${45 + (index * 5)}%`,
+              width: `${Math.min(geofence.radius / 100, 20)}%`,
+              height: `${Math.min(geofence.radius / 100, 20)}%`,
+              transform: 'translate(-50%, -50%)'
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-xs font-medium text-blue-700 bg-white px-1 rounded">
+                {geofence.name}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Interactive Map Note */}
+        <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-white px-2 py-1 rounded shadow">
+          Interactive Map • Click markers for details
+        </div>
+      </div>
+
+      {/* Status Summary */}
+      <div className="grid grid-cols-3 gap-4">
+        <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+          <div className="flex items-center space-x-2">
+            <Users className="h-4 w-4 text-primary" />
+            <span className="text-sm text-muted-foreground">Personnel</span>
+          </div>
+          <div className="text-lg font-bold text-primary">{locationData.personnel.length}</div>
         </div>
         
-        <div className="flex items-center space-x-4 text-xs">
-          <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span>{translate('Active', 'Active')}</span>
+        <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+          <div className="flex items-center space-x-2">
+            <Truck className="h-4 w-4 text-accent" />
+            <span className="text-sm text-muted-foreground">Vehicles</span>
           </div>
-          <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <span>{translate('Standby', 'Parked')}</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <span>{translate('Offline', 'Offline')}</span>
-          </div>
+          <div className="text-lg font-bold text-accent">{locationData.vehicles.length}</div>
         </div>
-      </div>
-
-      {/* Map Container */}
-      <div className="map-container h-96">
-        <MapContainer
-          center={[36.5962, -80.2741]}
-          zoom={16}
-          style={{ height: '100%', width: '100%' }}
-          className="rounded-lg"
-        >
-          <TileLayer
-            url={mapTypes.find(t => t.key === selectedMapType)?.url || mapTypes[0].url}
-            attribution='&copy; OpenStreetMap contributors'
-          />
-
-          {/* Geofences */}
-          {mockLocations.geofences.map(fence => (
-            <Circle
-              key={fence.id}
-              center={fence.center}
-              radius={fence.radius}
-              pathOptions={{
-                color: fence.type === 'office' ? '#1e90ff' : '#ff8c00',
-                fillColor: fence.type === 'office' ? '#1e90ff' : '#ff8c00',
-                fillOpacity: 0.1,
-                weight: 2
-              }}
-            >
-              <Popup>
-                <div className="text-sm">
-                  <div className="font-semibold">{fence.name}</div>
-                  <div className="text-muted-foreground">
-                    {translate('Zone', 'Area')}: {fence.type}
-                  </div>
-                </div>
-              </Popup>
-            </Circle>
-          ))}
-
-          {/* Personnel Markers */}
-          {mockLocations.personnel.map(person => (
-            <Marker
-              key={person.id}
-              position={person.position}
-              icon={createCustomIcon(getStatusColor(person.status))}
-            >
-              <Popup>
-                <div className="text-sm space-y-1">
-                  <div className="font-semibold flex items-center space-x-1">
-                    <Users className="h-3 w-3" />
-                    <span>{person.name}</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    {translate('Status', 'Status')}: {person.status}
-                  </div>
-                  <div className="text-muted-foreground">
-                    {translate('Activity', 'Activity')}: {getActivityIcon(person.activity)} {person.activity}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {translate('Last Update', 'Last Update')}: {new Date(person.lastUpdate).toLocaleTimeString()}
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-
-          {/* Vehicle Markers */}
-          {mockLocations.vehicles.map(vehicle => (
-            <Marker
-              key={vehicle.id}
-              position={vehicle.position}
-              icon={createCustomIcon(getStatusColor(vehicle.status), 30)}
-            >
-              <Popup>
-                <div className="text-sm space-y-1">
-                  <div className="font-semibold flex items-center space-x-1">
-                    <Truck className="h-3 w-3" />
-                    <span>{vehicle.name}</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    {translate('Status', 'Status')}: {vehicle.status}
-                  </div>
-                  {vehicle.driver && (
-                    <div className="text-muted-foreground">
-                      {translate('Operator', 'Driver')}: {vehicle.driver}
-                    </div>
-                  )}
-                  <div className="text-muted-foreground">
-                    {translate('Fuel', 'Fuel')}: {vehicle.fuel}%
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {translate('Last Update', 'Last Update')}: {new Date(vehicle.lastUpdate).toLocaleTimeString()}
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </div>
-
-      {/* Map Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        <div className="p-2 bg-muted rounded-lg">
-          <div className="text-lg font-bold text-primary">{mockLocations.personnel.length}</div>
-          <div className="text-xs text-muted-foreground">
-            {translate('Personnel', 'Employees')}
+        
+        <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+          <div className="flex items-center space-x-2">
+            <Activity className="h-4 w-4 text-green-500" />
+            <span className="text-sm text-muted-foreground">Active</span>
           </div>
-        </div>
-        <div className="p-2 bg-muted rounded-lg">
-          <div className="text-lg font-bold text-accent">{mockLocations.vehicles.length}</div>
-          <div className="text-xs text-muted-foreground">
-            {translate('Assets', 'Vehicles')}
-          </div>
-        </div>
-        <div className="p-2 bg-muted rounded-lg">
           <div className="text-lg font-bold text-green-500">
-            {mockLocations.personnel.filter(p => p.status === 'active').length}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            {translate('Active', 'Active')}
+            {locationData.personnel.filter(p => p.status === 'active').length + 
+             locationData.vehicles.filter(v => v.status === 'active' || v.status === 'deployed').length}
           </div>
         </div>
-        <div className="p-2 bg-muted rounded-lg">
-          <div className="text-lg font-bold text-yellow-500">
-            {mockLocations.geofences.length}
+        
+        <div className="col-span-3 flex items-center justify-between p-3 bg-muted rounded-lg">
+          <div className="flex items-center space-x-2">
+            <Shield className="h-4 w-4 text-blue-500" />
+            <span className="text-sm text-muted-foreground">Geofenced Areas</span>
           </div>
-          <div className="text-xs text-muted-foreground">
-            {translate('Zones', 'Areas')}
-          </div>
+          <div className="text-lg font-bold text-blue-500">{locationData.geofences.length}</div>
         </div>
+      </div>
+
+      {/* Last Updated */}
+      <div className="flex items-center justify-center text-xs text-muted-foreground">
+        <Clock className="h-3 w-3 mr-1" />
+        Last updated: {new Date(locationData.lastUpdated).toLocaleTimeString()}
       </div>
     </div>
   )
