@@ -1,0 +1,159 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.8.14",
+  "deps": {
+    "tslib": "^2.6.2",
+    "@nrwl/workspace": "^19.8.11",
+    "@nx/workspace": "^19.8.11",
+    "@nx/node": "^19.8.11",
+    "@nx/react": "^19.8.11",
+    "@nx/vite": "^19.8.11",
+    "@nx/eslint": "^19.8.11",
+    "@nx/jest": "^19.8.11",
+    "@types/node": "^22.10.5",
+    "typescript": "~5.4.5",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "nx": "^19.8.11"
+  },
+  "pathMappings": {
+    "@blacktop/shared-types": [
+      "libs/shared/types/src/index.ts"
+    ],
+    "@blacktop/shared-utils": [
+      "libs/shared/utils/src/index.ts"
+    ],
+    "@blacktop/ui-components": [
+      "libs/ui/components/src/index.ts"
+    ],
+    "@blacktop/api-client": [
+      "libs/api/client/src/index.ts"
+    ],
+    "@blacktop/plugin-system": [
+      "libs/core/plugin-system/src/index.ts"
+    ],
+    "@blacktop/theme": [
+      "libs/ui/theme/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
+      }
+    }
+  ],
+  "fileMap": {
+    "projectFileMap": {
+      "api": [
+        {
+          "file": "apps/api/package.json",
+          "hash": "13281870979990369588"
+        },
+        {
+          "file": "apps/api/project.json",
+          "hash": "18285408402076814146"
+        },
+        {
+          "file": "apps/api/src/environments/environment.prod.ts",
+          "hash": "1369436976780040082"
+        },
+        {
+          "file": "apps/api/src/environments/environment.ts",
+          "hash": "5913723651242746245"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "7117152639204388788"
+        },
+        {
+          "file": "apps/api/src/middleware/auth.ts",
+          "hash": "11843331467696050983"
+        },
+        {
+          "file": "apps/api/src/middleware/error-handler.ts",
+          "hash": "13380163043884869325"
+        },
+        {
+          "file": "apps/api/src/routes/auth.ts",
+          "hash": "16275519243833198665"
+        },
+        {
+          "file": "apps/api/src/routes/modules.ts",
+          "hash": "9490699859276145598"
+        },
+        {
+          "file": "apps/api/src/routes/overwatch.ts",
+          "hash": "16690120736336920672"
+        },
+        {
+          "file": "apps/api/src/routes/plugins.ts",
+          "hash": "4021203532985811228"
+        },
+        {
+          "file": "apps/api/src/routes/users.ts",
+          "hash": "4419864750767394242"
+        },
+        {
+          "file": "apps/api/src/services/database.ts",
+          "hash": "5010801478948906942"
+        },
+        {
+          "file": "apps/api/src/services/plugin-manager.ts",
+          "hash": "11782723827673296332"
+        },
+        {
+          "file": "apps/api/src/utils/logger.ts",
+          "hash": "1905249629653324804"
+        },
+        {
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "12674487127507862200"
+        },
+        {
+          "file": "apps/api/webpack.config.js",
+          "hash": "11901762963690569950"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".env.example",
+        "hash": "15254509580839354435"
+      },
+      {
+        "file": "README.md",
+        "hash": "1222074256305649575"
+      },
+      {
+        "file": "nx.json",
+        "hash": "16634523959619426367"
+      },
+      {
+        "file": "package.json",
+        "hash": "8751012345870618019"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "5218664060749322101"
+      }
+    ]
+  }
+}
