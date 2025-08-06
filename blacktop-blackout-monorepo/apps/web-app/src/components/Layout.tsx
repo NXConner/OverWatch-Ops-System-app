@@ -50,6 +50,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         icon: Settings
       },
       {
+        name: translate('Safety & Compliance', 'Safety Center'),
+        href: '/safety-compliance',
+        icon: Shield
+      },
+      {
         name: translate('Analytics', 'Analytics'),
         href: '/analytics',
         icon: BarChart3

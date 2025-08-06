@@ -10,6 +10,7 @@ import { Login } from './pages/Login'
 import { OverWatch } from './pages/OverWatch'
 import { GeminiEstimator } from './pages/GeminiEstimator'
 import { BusinessLogic } from './pages/BusinessLogic'
+import { SafetyCompliance } from './pages/SafetyCompliance'
 import { Analytics } from './pages/Analytics'
 import { Fleet } from './pages/Fleet'
 import { Materials } from './pages/Materials'
@@ -47,6 +48,7 @@ function App() {
             <Route path="/overwatch" element={<OverWatch />} />
             <Route path="/gemini-estimator" element={<GeminiEstimator />} />
             <Route path="/business-logic" element={<BusinessLogic />} />
+            <Route path="/safety-compliance" element={<SafetyCompliance />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/fleet" element={<Fleet />} />
             <Route path="/materials" element={<Materials />} />
