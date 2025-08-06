@@ -1,0 +1,80 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.8.14",
+  "deps": {
+    "tslib": "^2.6.2",
+    "@nrwl/workspace": "^19.8.11",
+    "@nx/workspace": "^19.8.11",
+    "@nx/node": "^19.8.11",
+    "@nx/react": "^19.8.11",
+    "@nx/vite": "^19.8.11",
+    "@nx/eslint": "^19.8.11",
+    "@nx/jest": "^19.8.11",
+    "@types/node": "^22.10.5",
+    "typescript": "~5.4.5",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "nx": "^19.8.11"
+  },
+  "pathMappings": {
+    "@blacktop/shared-types": [
+      "libs/shared/types/src/index.ts"
+    ],
+    "@blacktop/shared-utils": [
+      "libs/shared/utils/src/index.ts"
+    ],
+    "@blacktop/ui-components": [
+      "libs/ui/components/src/index.ts"
+    ],
+    "@blacktop/api-client": [
+      "libs/api/client/src/index.ts"
+    ],
+    "@blacktop/plugin-system": [
+      "libs/core/plugin-system/src/index.ts"
+    ],
+    "@blacktop/theme": [
+      "libs/ui/theme/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
+      }
+    }
+  ],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": "nx.json",
+        "hash": "16634523959619426367"
+      },
+      {
+        "file": "package.json",
+        "hash": "8751012345870618019"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "5218664060749322101"
+      }
+    ]
+  }
+}
