@@ -1,0 +1,19 @@
+assets by path *.json 86.3 KiB
+  asset package-lock.json 85.2 KiB [emitted]
+  asset package.json 1.02 KiB [emitted]
+asset main.js 114 KiB [emitted] (name: main) 1 related asset
+asset assets/.gitkeep 78 bytes [emitted] [from: apps/api/src/assets/.gitkeep] [copied]
+runtime modules 123 bytes 1 module
+cacheable modules 109 KiB
+  modules by path ./apps/api/src/routes/*.ts 39.5 KiB
+    ./apps/api/src/routes/auth.ts 6.46 KiB [built] [code generated]
+    + 5 modules
+  modules by path ./apps/api/src/services/*.ts 28.2 KiB
+    ./apps/api/src/services/plugin-manager.ts 10.1 KiB [built] [code generated]
+    + 2 modules
+  modules by path ./apps/api/src/middleware/*.ts 16 KiB
+    ./apps/api/src/middleware/error-handler.ts 8.57 KiB [built] [code generated]
+    ./apps/api/src/middleware/auth.ts 7.47 KiB [built] [code generated]
+  + 4 modules
++ 20 modules
+webpack 5.99.9 compiled successfully in 1875 ms

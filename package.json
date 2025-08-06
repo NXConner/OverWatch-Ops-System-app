@@ -17,7 +17,7 @@
     "mobile:android": "npx cap open android",
     "mobile:run-android": "npx cap run android",
     "apk:build": "npm run mobile:build && npx cap build android",
-    "apk:debug": "npm run mobile:build && npx cap build android --prod=false",
+    "apk:debug": "npm run mobile:build && npx cap build android",
     "android:setup": "npx cap add android && npm run mobile:build"
   },
   "private": true,
@@ -27,21 +27,25 @@
     "@capacitor/core": "^7.4.2",
     "@nrwl/workspace": "^19.8.11",
     "@nx/eslint": "^19.8.11",
-    "@nx/jest": "^19.8.11",
-    "@nx/node": "^19.8.11",
+    "@nx/jest": "^19.8.14",
+    "@nx/node": "^19.8.14",
     "@nx/react": "^19.8.11",
     "@nx/vite": "^19.8.11",
     "@nx/webpack": "^21.3.11",
     "@nx/workspace": "^19.8.11",
     "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.10.5",
     "eslint": "^8.57.0",
     "jest": "^30.0.5",
     "nx": "^19.8.11",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.4.1",
     "typescript": "~5.4.5"
   },
   "dependencies": {
+    "@types/pg": "^8.15.5",
+    "pg": "^8.16.3",
     "tslib": "^2.6.2"
   },
   "workspaces": [

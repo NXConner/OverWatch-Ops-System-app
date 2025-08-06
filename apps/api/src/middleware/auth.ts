@@ -42,7 +42,7 @@ export const authMiddleware = async (
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
-): Promise<void> => {
+): Promise<void | Response> => {
   try {
     const authHeader = req.headers.authorization;
     
@@ -109,7 +109,7 @@ export const authMiddleware = async (
 export const requireRole = (requiredRoles: string | string[]) => {
   const roles = Array.isArray(requiredRoles) ? requiredRoles : [requiredRoles];
   
-  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void | Response => {
     if (!req.user) {
       return res.status(401).json({
         error: 'Unauthorized',
@@ -142,7 +142,7 @@ export const requireRole = (requiredRoles: string | string[]) => {
 export const requirePermission = (requiredPermissions: string | string[]) => {
   const permissions = Array.isArray(requiredPermissions) ? requiredPermissions : [requiredPermissions];
   
-  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void | Response => {
     if (!req.user) {
       return res.status(401).json({
         error: 'Unauthorized',
@@ -174,7 +174,7 @@ export const requirePermission = (requiredPermissions: string | string[]) => {
 };
 
 // Company isolation middleware - ensures users can only access their company's data
-export const requireCompanyAccess = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+export const requireCompanyAccess = (req: AuthenticatedRequest, res: Response, next: NextFunction): void | Response => {
   if (!req.user?.companyId) {
     return res.status(403).json({
       error: 'Forbidden',
@@ -190,11 +190,11 @@ export const requireCompanyAccess = (req: AuthenticatedRequest, res: Response, n
 
 // Utility functions for JWT operations
 export const generateToken = (payload: Omit<JWTPayload, 'iat' | 'exp'>): string => {
-  return jwt.sign(payload, JWT_SECRET, {
+  return jwt.sign(payload as object, JWT_SECRET!, {
     expiresIn: JWT_EXPIRES_IN,
     issuer: 'blacktop-blackout',
     audience: 'blacktop-users'
-  });
+  } as jwt.SignOptions);
 };
 
 export const verifyToken = (token: string): JWTPayload => {

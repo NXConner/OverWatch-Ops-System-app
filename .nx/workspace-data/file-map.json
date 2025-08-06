@@ -2,24 +2,28 @@
   "version": "6.0",
   "nxVersion": "19.8.14",
   "deps": {
+    "@types/pg": "^8.15.5",
+    "pg": "^8.16.3",
     "tslib": "^2.6.2",
     "@capacitor/android": "^7.4.2",
     "@capacitor/cli": "^7.4.2",
     "@capacitor/core": "^7.4.2",
     "@nrwl/workspace": "^19.8.11",
     "@nx/eslint": "^19.8.11",
-    "@nx/jest": "^19.8.11",
-    "@nx/node": "^19.8.11",
+    "@nx/jest": "^19.8.14",
+    "@nx/node": "^19.8.14",
     "@nx/react": "^19.8.11",
     "@nx/vite": "^19.8.11",
     "@nx/webpack": "^21.3.11",
     "@nx/workspace": "^19.8.11",
     "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.10.5",
     "eslint": "^8.57.0",
     "jest": "^30.0.5",
     "nx": "^19.8.11",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.4.1",
     "typescript": "~5.4.5"
   },
   "pathMappings": {
@@ -68,6 +72,554 @@
   ],
   "fileMap": {
     "projectFileMap": {
+      "api": [
+        {
+          "file": "apps/api/.env",
+          "hash": "3704485766018384450"
+        },
+        {
+          "file": "apps/api/business-logic-db.js",
+          "hash": "11042801472559473961",
+          "deps": [
+            "npm:dotenv",
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/dist/database/init.d.ts",
+          "hash": "14546892416910843547"
+        },
+        {
+          "file": "apps/api/dist/database/init.d.ts.map",
+          "hash": "3861249922662006079"
+        },
+        {
+          "file": "apps/api/dist/database/init.js",
+          "hash": "3029253952435878227",
+          "deps": [
+            "npm:pg",
+            [
+              "npm:dotenv",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/api/dist/database/init.js.map",
+          "hash": "8148420068697301236"
+        },
+        {
+          "file": "apps/api/dist/database/schema.d.ts",
+          "hash": "7031048014904254093"
+        },
+        {
+          "file": "apps/api/dist/database/schema.d.ts.map",
+          "hash": "16606529904939278661"
+        },
+        {
+          "file": "apps/api/dist/database/schema.js",
+          "hash": "17131926979606407032"
+        },
+        {
+          "file": "apps/api/dist/database/schema.js.map",
+          "hash": "14449971172377480607"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.d.ts",
+          "hash": "1008166452745997948"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.d.ts.map",
+          "hash": "10637474180457995972"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.js",
+          "hash": "15469505755267639954"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.js.map",
+          "hash": "18359553736240529968"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.prod.d.ts",
+          "hash": "13447673891711449225"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.prod.d.ts.map",
+          "hash": "12781668131185011238"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.prod.js",
+          "hash": "15101108231999291356"
+        },
+        {
+          "file": "apps/api/dist/environments/environment.prod.js.map",
+          "hash": "3660593554975279519"
+        },
+        {
+          "file": "apps/api/dist/main.d.ts",
+          "hash": "6612180531392851943",
+          "deps": [
+            "npm:socket.io"
+          ]
+        },
+        {
+          "file": "apps/api/dist/main.d.ts.map",
+          "hash": "3194084611311961355"
+        },
+        {
+          "file": "apps/api/dist/main.js",
+          "hash": "1864106979338397082",
+          "deps": [
+            "npm:tslib",
+            "npm:express",
+            "npm:cors",
+            "npm:helmet",
+            "npm:compression",
+            "npm:express-rate-limit",
+            "npm:socket.io",
+            "npm:dotenv"
+          ]
+        },
+        {
+          "file": "apps/api/dist/main.js.map",
+          "hash": "16129221717876711439"
+        },
+        {
+          "file": "apps/api/dist/middleware/auth.d.ts",
+          "hash": "6553687127530422712",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/middleware/auth.d.ts.map",
+          "hash": "17890094478633747354"
+        },
+        {
+          "file": "apps/api/dist/middleware/auth.js",
+          "hash": "12648449248918127320",
+          "deps": [
+            "npm:tslib",
+            "npm:jsonwebtoken"
+          ]
+        },
+        {
+          "file": "apps/api/dist/middleware/auth.js.map",
+          "hash": "8581256625383873466"
+        },
+        {
+          "file": "apps/api/dist/middleware/error-handler.d.ts",
+          "hash": "12212828802949249078",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/middleware/error-handler.d.ts.map",
+          "hash": "7866584384455002881"
+        },
+        {
+          "file": "apps/api/dist/middleware/error-handler.js",
+          "hash": "2026450662340633212",
+          "deps": [
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "apps/api/dist/middleware/error-handler.js.map",
+          "hash": "8313611958616398769"
+        },
+        {
+          "file": "apps/api/dist/routes/auth.d.ts",
+          "hash": "8715616506206059986"
+        },
+        {
+          "file": "apps/api/dist/routes/auth.d.ts.map",
+          "hash": "10850989968372194066"
+        },
+        {
+          "file": "apps/api/dist/routes/auth.js",
+          "hash": "3747556551666763052",
+          "deps": [
+            "npm:tslib",
+            "npm:express",
+            "npm:bcryptjs",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "apps/api/dist/routes/auth.js.map",
+          "hash": "14381769286216651378"
+        },
+        {
+          "file": "apps/api/dist/routes/modules.d.ts",
+          "hash": "18165312019048355176"
+        },
+        {
+          "file": "apps/api/dist/routes/modules.d.ts.map",
+          "hash": "1541453799398290984"
+        },
+        {
+          "file": "apps/api/dist/routes/modules.js",
+          "hash": "1323125486684344393",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/routes/modules.js.map",
+          "hash": "10259059570500355993"
+        },
+        {
+          "file": "apps/api/dist/routes/overwatch.d.ts",
+          "hash": "8359571174521634200"
+        },
+        {
+          "file": "apps/api/dist/routes/overwatch.d.ts.map",
+          "hash": "13203008059038591716"
+        },
+        {
+          "file": "apps/api/dist/routes/overwatch.js",
+          "hash": "13745465644845323179",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/routes/overwatch.js.map",
+          "hash": "17462470208145364616"
+        },
+        {
+          "file": "apps/api/dist/routes/plugins.d.ts",
+          "hash": "3812657383080244198"
+        },
+        {
+          "file": "apps/api/dist/routes/plugins.d.ts.map",
+          "hash": "6123129887168999726"
+        },
+        {
+          "file": "apps/api/dist/routes/plugins.js",
+          "hash": "5376408782459540855",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/routes/plugins.js.map",
+          "hash": "343243364723140820"
+        },
+        {
+          "file": "apps/api/dist/routes/users.d.ts",
+          "hash": "18294509195842633642"
+        },
+        {
+          "file": "apps/api/dist/routes/users.d.ts.map",
+          "hash": "5556409157192391248"
+        },
+        {
+          "file": "apps/api/dist/routes/users.js",
+          "hash": "8318048022614640974",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/dist/routes/users.js.map",
+          "hash": "18249142678752792385"
+        },
+        {
+          "file": "apps/api/dist/services/database.d.ts",
+          "hash": "2998092633517936873",
+          "deps": [
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/dist/services/database.d.ts.map",
+          "hash": "18348288108330817726"
+        },
+        {
+          "file": "apps/api/dist/services/database.js",
+          "hash": "10680843603121432595",
+          "deps": [
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/dist/services/database.js.map",
+          "hash": "1451951153913139996"
+        },
+        {
+          "file": "apps/api/dist/services/plugin-manager.d.ts",
+          "hash": "10979754759536026850"
+        },
+        {
+          "file": "apps/api/dist/services/plugin-manager.d.ts.map",
+          "hash": "16601177948598379837"
+        },
+        {
+          "file": "apps/api/dist/services/plugin-manager.js",
+          "hash": "6027682506878666031",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "apps/api/dist/services/plugin-manager.js.map",
+          "hash": "10493800920700861167"
+        },
+        {
+          "file": "apps/api/dist/utils/logger.d.ts",
+          "hash": "9268523684090384077",
+          "deps": [
+            "npm:winston"
+          ]
+        },
+        {
+          "file": "apps/api/dist/utils/logger.d.ts.map",
+          "hash": "14542426848813854428"
+        },
+        {
+          "file": "apps/api/dist/utils/logger.js",
+          "hash": "9804236968452653298",
+          "deps": [
+            "npm:tslib",
+            "npm:winston"
+          ]
+        },
+        {
+          "file": "apps/api/dist/utils/logger.js.map",
+          "hash": "4172937689335835398"
+        },
+        {
+          "file": "apps/api/init-db-extended.js",
+          "hash": "12571119998320345892",
+          "deps": [
+            "npm:dotenv",
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/init-db.js",
+          "hash": "10491810575623191082",
+          "deps": [
+            "npm:dotenv",
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/jest.config.ts",
+          "hash": "16238447023661444836"
+        },
+        {
+          "file": "apps/api/logs/combined.log",
+          "hash": "13164949483076998770"
+        },
+        {
+          "file": "apps/api/logs/error.log",
+          "hash": "11451496346181063255"
+        },
+        {
+          "file": "apps/api/logs/exceptions.log",
+          "hash": "9828343171473216565"
+        },
+        {
+          "file": "apps/api/logs/rejections.log",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/package.json",
+          "hash": "3779935080490330452",
+          "deps": [
+            "npm:@types/express",
+            "npm:@types/cors",
+            "npm:@types/compression",
+            "npm:@types/pg",
+            "npm:@types/jsonwebtoken",
+            "npm:@types/bcryptjs",
+            "npm:@types/multer",
+            "npm:@types/uuid",
+            "npm:@types/node",
+            "npm:@types/node-cron",
+            "npm:@types/nodemailer",
+            "npm:typescript@5.9.2",
+            "npm:ts-node@10.9.2",
+            "npm:express",
+            "npm:cors",
+            "npm:helmet",
+            "npm:compression",
+            "npm:dotenv",
+            "npm:pg",
+            "npm:jsonwebtoken",
+            "npm:bcryptjs",
+            "npm:express-rate-limit",
+            "npm:multer",
+            "npm:uuid",
+            "npm:zod",
+            "npm:winston",
+            "npm:socket.io",
+            "npm:node-cron",
+            "npm:nodemailer",
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apps/api/project.json",
+          "hash": "2015841892709452823"
+        },
+        {
+          "file": "apps/api/src/assets/.gitkeep",
+          "hash": "15387900886879383568"
+        },
+        {
+          "file": "apps/api/src/config/database.ts",
+          "hash": "6610141494112012725",
+          "deps": [
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/src/database/init.ts",
+          "hash": "330699321757393425",
+          "deps": [
+            "npm:pg",
+            [
+              "npm:dotenv",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/api/src/database/schema.ts",
+          "hash": "12474307944267826919"
+        },
+        {
+          "file": "apps/api/src/environments/environment.prod.ts",
+          "hash": "1369436976780040082"
+        },
+        {
+          "file": "apps/api/src/environments/environment.ts",
+          "hash": "5913723651242746245"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "9686167106116843822",
+          "deps": [
+            "npm:express",
+            "npm:cors",
+            "npm:helmet",
+            "npm:compression",
+            "npm:express-rate-limit",
+            "npm:socket.io",
+            "npm:dotenv"
+          ]
+        },
+        {
+          "file": "apps/api/src/middleware/auth.ts",
+          "hash": "7248010053597419904",
+          "deps": [
+            "npm:express",
+            "npm:jsonwebtoken"
+          ]
+        },
+        {
+          "file": "apps/api/src/middleware/error-handler.ts",
+          "hash": "13380163043884869325",
+          "deps": [
+            "npm:express",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/auth.ts",
+          "hash": "16275519243833198665",
+          "deps": [
+            "npm:express",
+            "npm:bcryptjs",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/business-logic.ts",
+          "hash": "7766647126418164155",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/modules.ts",
+          "hash": "9490699859276145598",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/overwatch.ts",
+          "hash": "14226773801245215008",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/plugins.ts",
+          "hash": "4021203532985811228",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/src/routes/users.ts",
+          "hash": "4419864750767394242",
+          "deps": [
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/api/src/services/database.ts",
+          "hash": "10617435364718251463",
+          "deps": [
+            "npm:pg"
+          ]
+        },
+        {
+          "file": "apps/api/src/services/plugin-manager.ts",
+          "hash": "6733022606439700675"
+        },
+        {
+          "file": "apps/api/src/services/weatherService.ts",
+          "hash": "1960901476493553146",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apps/api/src/utils/logger.ts",
+          "hash": "1905249629653324804",
+          "deps": [
+            "npm:winston"
+          ]
+        },
+        {
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "12674487127507862200"
+        },
+        {
+          "file": "apps/api/tsconfig.json",
+          "hash": "10195224814401534104"
+        },
+        {
+          "file": "apps/api/tsconfig.spec.json",
+          "hash": "10796733258993533913"
+        },
+        {
+          "file": "apps/api/webpack.config.js",
+          "hash": "17515187771375731994",
+          "deps": [
+            "npm:@nx/webpack"
+          ]
+        }
+      ],
       "@blacktop/web-app": [
         {
           "file": "apps/web-app/dist/assets/index-CfXreQmJ.css",
@@ -411,538 +963,16 @@
             "npm:@vitejs/plugin-react"
           ]
         }
-      ],
-      "api": [
-        {
-          "file": "apps/api/.env",
-          "hash": "3704485766018384450"
-        },
-        {
-          "file": "apps/api/business-logic-db.js",
-          "hash": "11042801472559473961",
-          "deps": [
-            "npm:dotenv",
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/dist/database/init.d.ts",
-          "hash": "14546892416910843547"
-        },
-        {
-          "file": "apps/api/dist/database/init.d.ts.map",
-          "hash": "3861249922662006079"
-        },
-        {
-          "file": "apps/api/dist/database/init.js",
-          "hash": "3029253952435878227",
-          "deps": [
-            "npm:pg",
-            [
-              "npm:dotenv",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "apps/api/dist/database/init.js.map",
-          "hash": "8148420068697301236"
-        },
-        {
-          "file": "apps/api/dist/database/schema.d.ts",
-          "hash": "7031048014904254093"
-        },
-        {
-          "file": "apps/api/dist/database/schema.d.ts.map",
-          "hash": "16606529904939278661"
-        },
-        {
-          "file": "apps/api/dist/database/schema.js",
-          "hash": "17131926979606407032"
-        },
-        {
-          "file": "apps/api/dist/database/schema.js.map",
-          "hash": "14449971172377480607"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.d.ts",
-          "hash": "1008166452745997948"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.d.ts.map",
-          "hash": "10637474180457995972"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.js",
-          "hash": "15469505755267639954"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.js.map",
-          "hash": "18359553736240529968"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.prod.d.ts",
-          "hash": "13447673891711449225"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.prod.d.ts.map",
-          "hash": "12781668131185011238"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.prod.js",
-          "hash": "15101108231999291356"
-        },
-        {
-          "file": "apps/api/dist/environments/environment.prod.js.map",
-          "hash": "3660593554975279519"
-        },
-        {
-          "file": "apps/api/dist/main.d.ts",
-          "hash": "6612180531392851943",
-          "deps": [
-            "npm:socket.io"
-          ]
-        },
-        {
-          "file": "apps/api/dist/main.d.ts.map",
-          "hash": "3194084611311961355"
-        },
-        {
-          "file": "apps/api/dist/main.js",
-          "hash": "1864106979338397082",
-          "deps": [
-            "npm:tslib",
-            "npm:express",
-            "npm:cors",
-            "npm:helmet",
-            "npm:compression",
-            "npm:express-rate-limit",
-            "npm:socket.io",
-            "npm:dotenv"
-          ]
-        },
-        {
-          "file": "apps/api/dist/main.js.map",
-          "hash": "16129221717876711439"
-        },
-        {
-          "file": "apps/api/dist/middleware/auth.d.ts",
-          "hash": "6553687127530422712",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/middleware/auth.d.ts.map",
-          "hash": "17890094478633747354"
-        },
-        {
-          "file": "apps/api/dist/middleware/auth.js",
-          "hash": "12648449248918127320",
-          "deps": [
-            "npm:tslib",
-            "npm:jsonwebtoken"
-          ]
-        },
-        {
-          "file": "apps/api/dist/middleware/auth.js.map",
-          "hash": "8581256625383873466"
-        },
-        {
-          "file": "apps/api/dist/middleware/error-handler.d.ts",
-          "hash": "12212828802949249078",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/middleware/error-handler.d.ts.map",
-          "hash": "7866584384455002881"
-        },
-        {
-          "file": "apps/api/dist/middleware/error-handler.js",
-          "hash": "2026450662340633212",
-          "deps": [
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "apps/api/dist/middleware/error-handler.js.map",
-          "hash": "8313611958616398769"
-        },
-        {
-          "file": "apps/api/dist/routes/auth.d.ts",
-          "hash": "8715616506206059986"
-        },
-        {
-          "file": "apps/api/dist/routes/auth.d.ts.map",
-          "hash": "10850989968372194066"
-        },
-        {
-          "file": "apps/api/dist/routes/auth.js",
-          "hash": "3747556551666763052",
-          "deps": [
-            "npm:tslib",
-            "npm:express",
-            "npm:bcryptjs",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "apps/api/dist/routes/auth.js.map",
-          "hash": "14381769286216651378"
-        },
-        {
-          "file": "apps/api/dist/routes/modules.d.ts",
-          "hash": "18165312019048355176"
-        },
-        {
-          "file": "apps/api/dist/routes/modules.d.ts.map",
-          "hash": "1541453799398290984"
-        },
-        {
-          "file": "apps/api/dist/routes/modules.js",
-          "hash": "1323125486684344393",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/routes/modules.js.map",
-          "hash": "10259059570500355993"
-        },
-        {
-          "file": "apps/api/dist/routes/overwatch.d.ts",
-          "hash": "8359571174521634200"
-        },
-        {
-          "file": "apps/api/dist/routes/overwatch.d.ts.map",
-          "hash": "13203008059038591716"
-        },
-        {
-          "file": "apps/api/dist/routes/overwatch.js",
-          "hash": "13745465644845323179",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/routes/overwatch.js.map",
-          "hash": "17462470208145364616"
-        },
-        {
-          "file": "apps/api/dist/routes/plugins.d.ts",
-          "hash": "3812657383080244198"
-        },
-        {
-          "file": "apps/api/dist/routes/plugins.d.ts.map",
-          "hash": "6123129887168999726"
-        },
-        {
-          "file": "apps/api/dist/routes/plugins.js",
-          "hash": "5376408782459540855",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/routes/plugins.js.map",
-          "hash": "343243364723140820"
-        },
-        {
-          "file": "apps/api/dist/routes/users.d.ts",
-          "hash": "18294509195842633642"
-        },
-        {
-          "file": "apps/api/dist/routes/users.d.ts.map",
-          "hash": "5556409157192391248"
-        },
-        {
-          "file": "apps/api/dist/routes/users.js",
-          "hash": "8318048022614640974",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/dist/routes/users.js.map",
-          "hash": "18249142678752792385"
-        },
-        {
-          "file": "apps/api/dist/services/database.d.ts",
-          "hash": "2998092633517936873",
-          "deps": [
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/dist/services/database.d.ts.map",
-          "hash": "18348288108330817726"
-        },
-        {
-          "file": "apps/api/dist/services/database.js",
-          "hash": "10680843603121432595",
-          "deps": [
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/dist/services/database.js.map",
-          "hash": "1451951153913139996"
-        },
-        {
-          "file": "apps/api/dist/services/plugin-manager.d.ts",
-          "hash": "10979754759536026850"
-        },
-        {
-          "file": "apps/api/dist/services/plugin-manager.d.ts.map",
-          "hash": "16601177948598379837"
-        },
-        {
-          "file": "apps/api/dist/services/plugin-manager.js",
-          "hash": "6027682506878666031",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "apps/api/dist/services/plugin-manager.js.map",
-          "hash": "10493800920700861167"
-        },
-        {
-          "file": "apps/api/dist/utils/logger.d.ts",
-          "hash": "9268523684090384077",
-          "deps": [
-            "npm:winston"
-          ]
-        },
-        {
-          "file": "apps/api/dist/utils/logger.d.ts.map",
-          "hash": "14542426848813854428"
-        },
-        {
-          "file": "apps/api/dist/utils/logger.js",
-          "hash": "9804236968452653298",
-          "deps": [
-            "npm:tslib",
-            "npm:winston"
-          ]
-        },
-        {
-          "file": "apps/api/dist/utils/logger.js.map",
-          "hash": "4172937689335835398"
-        },
-        {
-          "file": "apps/api/init-db-extended.js",
-          "hash": "12571119998320345892",
-          "deps": [
-            "npm:dotenv",
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/init-db.js",
-          "hash": "10491810575623191082",
-          "deps": [
-            "npm:dotenv",
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/logs/combined.log",
-          "hash": "13164949483076998770"
-        },
-        {
-          "file": "apps/api/logs/error.log",
-          "hash": "11451496346181063255"
-        },
-        {
-          "file": "apps/api/logs/exceptions.log",
-          "hash": "9828343171473216565"
-        },
-        {
-          "file": "apps/api/logs/rejections.log",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/api/package.json",
-          "hash": "3779935080490330452",
-          "deps": [
-            "npm:@types/express",
-            "npm:@types/cors",
-            "npm:@types/compression",
-            "npm:@types/pg",
-            "npm:@types/jsonwebtoken",
-            "npm:@types/bcryptjs",
-            "npm:@types/multer",
-            "npm:@types/uuid",
-            "npm:@types/node",
-            "npm:@types/node-cron",
-            "npm:@types/nodemailer",
-            "npm:typescript@5.9.2",
-            "npm:ts-node@10.9.2",
-            "npm:express",
-            "npm:cors",
-            "npm:helmet",
-            "npm:compression",
-            "npm:dotenv",
-            "npm:pg",
-            "npm:jsonwebtoken",
-            "npm:bcryptjs",
-            "npm:express-rate-limit",
-            "npm:multer",
-            "npm:uuid",
-            "npm:zod",
-            "npm:winston",
-            "npm:socket.io",
-            "npm:node-cron",
-            "npm:nodemailer",
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apps/api/project.json",
-          "hash": "18285408402076814146"
-        },
-        {
-          "file": "apps/api/src/database/init.ts",
-          "hash": "330699321757393425",
-          "deps": [
-            "npm:pg",
-            [
-              "npm:dotenv",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "apps/api/src/database/schema.ts",
-          "hash": "12474307944267826919"
-        },
-        {
-          "file": "apps/api/src/environments/environment.prod.ts",
-          "hash": "1369436976780040082"
-        },
-        {
-          "file": "apps/api/src/environments/environment.ts",
-          "hash": "5913723651242746245"
-        },
-        {
-          "file": "apps/api/src/main.ts",
-          "hash": "9686167106116843822",
-          "deps": [
-            "npm:express",
-            "npm:cors",
-            "npm:helmet",
-            "npm:compression",
-            "npm:express-rate-limit",
-            "npm:socket.io",
-            "npm:dotenv"
-          ]
-        },
-        {
-          "file": "apps/api/src/middleware/auth.ts",
-          "hash": "11843331467696050983",
-          "deps": [
-            "npm:express",
-            "npm:jsonwebtoken"
-          ]
-        },
-        {
-          "file": "apps/api/src/middleware/error-handler.ts",
-          "hash": "13380163043884869325",
-          "deps": [
-            "npm:express",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/auth.ts",
-          "hash": "16275519243833198665",
-          "deps": [
-            "npm:express",
-            "npm:bcryptjs",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/business-logic.ts",
-          "hash": "7766647126418164155",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/modules.ts",
-          "hash": "9490699859276145598",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/overwatch.ts",
-          "hash": "14226773801245215008",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/plugins.ts",
-          "hash": "4021203532985811228",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/src/routes/users.ts",
-          "hash": "4419864750767394242",
-          "deps": [
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/api/src/services/database.ts",
-          "hash": "10617435364718251463",
-          "deps": [
-            "npm:pg"
-          ]
-        },
-        {
-          "file": "apps/api/src/services/plugin-manager.ts",
-          "hash": "7200945960160259364"
-        },
-        {
-          "file": "apps/api/src/services/weatherService.ts",
-          "hash": "1960901476493553146",
-          "deps": [
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apps/api/src/utils/logger.ts",
-          "hash": "1905249629653324804",
-          "deps": [
-            "npm:winston"
-          ]
-        },
-        {
-          "file": "apps/api/tsconfig.app.json",
-          "hash": "12674487127507862200"
-        },
-        {
-          "file": "apps/api/tsconfig.json",
-          "hash": "10195224814401534104"
-        },
-        {
-          "file": "apps/api/webpack.config.js",
-          "hash": "11901762963690569950"
-        }
       ]
     },
     "nonProjectFiles": [
       {
+        "file": ".env",
+        "hash": "4532854675198450921"
+      },
+      {
         "file": ".env.example",
-        "hash": "15254509580839354435"
+        "hash": "5788892625313484842"
       },
       {
         "file": "ANDROID_BUILD.md",
@@ -1513,16 +1543,40 @@
         "hash": "1085529635754469654"
       },
       {
+        "file": "dist/apps/api/assets/.gitkeep",
+        "hash": "15387900886879383568"
+      },
+      {
+        "file": "dist/apps/api/main.js",
+        "hash": "8653666754370317295"
+      },
+      {
+        "file": "dist/apps/api/main.js.map",
+        "hash": "4720842605663896215"
+      },
+      {
+        "file": "dist/apps/api/package-lock.json",
+        "hash": "4500718477998305828"
+      },
+      {
+        "file": "dist/apps/api/package.json",
+        "hash": "4437964268517199587"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "6095816933284062826"
+      },
+      {
         "file": "nx.json",
         "hash": "16634523959619426367"
       },
       {
         "file": "package-lock.json",
-        "hash": "627512370360390323"
+        "hash": "3921935543390249950"
       },
       {
         "file": "package.json",
-        "hash": "562868255041404811"
+        "hash": "827442467094917431"
       },
       {
         "file": "tsconfig.base.json",

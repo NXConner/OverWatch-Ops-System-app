@@ -22,7 +22,12 @@ export interface PluginInterface {
 }
 
 export interface PluginContext {
-  logger: typeof logger;
+  logger: {
+    info: (message: string, meta?: any) => any;
+    error: (message: string, meta?: any) => any;
+    warn: (message: string, meta?: any) => any;
+    debug: (message: string, meta?: any) => any;
+  };
   database: any;
   config: any;
   events: EventEmitter;
@@ -231,11 +236,22 @@ class PluginManagerClass {
   private createPluginContext(pluginName: string): PluginContext {
     return {
       logger: {
-        ...logger,
-        info: (message: string, meta?: any) => logger.info(`[${pluginName}] ${message}`, meta),
-        error: (message: string, meta?: any) => logger.error(`[${pluginName}] ${message}`, meta),
-        warn: (message: string, meta?: any) => logger.warn(`[${pluginName}] ${message}`, meta),
-        debug: (message: string, meta?: any) => logger.debug(`[${pluginName}] ${message}`, meta)
+        info: (message: string, meta?: any) => {
+          logger.info(`[${pluginName}] ${message}`, meta);
+          return logger;
+        },
+        error: (message: string, meta?: any) => {
+          logger.error(`[${pluginName}] ${message}`, meta);
+          return logger;
+        },
+        warn: (message: string, meta?: any) => {
+          logger.warn(`[${pluginName}] ${message}`, meta);
+          return logger;
+        },
+        debug: (message: string, meta?: any) => {
+          logger.debug(`[${pluginName}] ${message}`, meta);
+          return logger;
+        }
       },
       database: null, // TODO: Provide restricted database access
       config: {},

@@ -1,0 +1,84 @@
+assets by path *.json 87 KiB
+  asset package-lock.json 85.9 KiB [emitted]
+  asset package.json 1.06 KiB [emitted]
+asset main.js 114 KiB [emitted] (name: main) 1 related asset
+asset assets/.gitkeep 78 bytes [emitted] [from: apps/api/src/assets/.gitkeep] [copied]
+runtime modules 123 bytes 1 module
+cacheable modules 109 KiB
+  modules by path ./apps/api/src/routes/*.ts 39.5 KiB
+    ./apps/api/src/routes/auth.ts 6.46 KiB [built] [code generated]
+    + 5 modules
+  modules by path ./apps/api/src/services/*.ts 28.2 KiB
+    ./apps/api/src/services/plugin-manager.ts 10.1 KiB [built] [code generated]
+    + 2 modules
+  modules by path ./apps/api/src/middleware/*.ts 16 KiB
+    ./apps/api/src/middleware/error-handler.ts 8.57 KiB [built] [code generated]
+    ./apps/api/src/middleware/auth.ts 7.47 KiB [built] [code generated]
+  + 4 modules
++ 20 modules
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m193:14[22m[39m
+[90mTS2769: [39mNo overload matches this call.
+  Overload 1 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: null, options?: SignOptions & { algorithm: "none"; }): string', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'null'.
+  Overload 2 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: Secret | JsonWebKeyInput | PrivateKeyInput, options?: SignOptions): string', gave the following error.
+    Type 'string' is not assignable to type 'number | StringValue'.
+  Overload 3 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: Secret | JsonWebKeyInput | PrivateKeyInput, callback: SignCallback): void', gave the following error.
+    Object literal may only specify known properties, and 'expiresIn' does not exist in type 'SignCallback'.
+  [0m [90m 191 |[39m [90m// Utility functions for JWT operations[39m
+   [90m 192 |[39m [36mexport[39m [36mconst[39m generateToken [33m=[39m (payload[33m:[39m [33mOmit[39m[33m<[39m[33mJWTPayload[39m[33m,[39m [32m'iat'[39m [33m|[39m [32m'exp'[39m[33m>[39m)[33m:[39m string [33m=>[39m {
+  [31m[1m>[22m[39m[90m 193 |[39m   [36mreturn[39m jwt[33m.[39msign(payload[33m,[39m [33mJWT_SECRET[39m [36mas[39m string[33m,[39m {
+   [90m     |[39m              [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 194 |[39m     expiresIn[33m:[39m [33mJWT_EXPIRES_IN[39m[33m,[39m
+   [90m 195 |[39m     issuer[33m:[39m [32m'blacktop-blackout'[39m[33m,[39m
+   [90m 196 |[39m     audience[33m:[39m [32m'blacktop-users'[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m234:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 232 |[39m     [36mreturn[39m {
+   [90m 233 |[39m       logger[33m:[39m {
+  [31m[1m>[22m[39m[90m 234 |[39m         info[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m {
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 235 |[39m           logger[33m.[39minfo([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m;[39m
+   [90m 236 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 237 |[39m         }[33m,[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m238:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 236 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 237 |[39m         }[33m,[39m
+  [31m[1m>[22m[39m[90m 238 |[39m         error[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m {
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 239 |[39m           logger[33m.[39merror([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m;[39m
+   [90m 240 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 241 |[39m         }[33m,[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m242:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 240 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 241 |[39m         }[33m,[39m
+  [31m[1m>[22m[39m[90m 242 |[39m         warn[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m {
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 243 |[39m           logger[33m.[39mwarn([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m;[39m
+   [90m 244 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 245 |[39m         }[33m,[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m246:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 244 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 245 |[39m         }[33m,[39m
+  [31m[1m>[22m[39m[90m 246 |[39m         debug[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m {
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 247 |[39m           logger[33m.[39mdebug([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m;[39m
+   [90m 248 |[39m           [36mreturn[39m logger[33m;[39m
+   [90m 249 |[39m         }[0m
+
+webpack 5.99.9 compiled with 5 errors in 2038 ms

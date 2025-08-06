@@ -1,0 +1,41 @@
+{
+  "name": "@blacktop/api",
+  "version": "1.0.0",
+  "description": "Blacktop Blackout API - Core backend services",
+  "main": "src/main.ts",
+  "scripts": {
+    "dev": "ts-node src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/compression": "1.8.1",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.3",
+    "@types/multer": "1.4.13",
+    "@types/node-cron": "3.0.11",
+    "@types/nodemailer": "6.4.17",
+    "@types/pg": "8.15.5",
+    "@types/uuid": "10.0.0",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.16",
+    "pg": "^8.13.1",
+    "socket.io": "^4.8.1",
+    "ts-node": "10.9.2",
+    "tslib": "2.8.1",
+    "uuid": "^10.0.0",
+    "winston": "^3.17.0",
+    "zod": "^3.23.8"
+  }
+}

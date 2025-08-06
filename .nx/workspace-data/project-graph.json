@@ -203,23 +203,32 @@
       "type": "app",
       "data": {
         "root": "apps/api",
-        "sourceRoot": "apps/api/src",
-        "name": "api",
-        "tags": [
-          "npm:public",
-          "scope:api",
-          "type:application"
-        ],
-        "metadata": {
-          "targetGroups": {
-            "NPM Scripts": [
-              "dev",
-              "start"
-            ]
-          },
-          "description": "Blacktop Blackout API - Core backend services"
-        },
         "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "apps/api/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "coverageReporters": [
+                  "text"
+                ]
+              }
+            },
+            "parallelism": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "cache": true
+          },
           "dev": {
             "executor": "nx:run-script",
             "options": {
@@ -266,7 +275,8 @@
               "tsConfig": "apps/api/tsconfig.app.json",
               "assets": [
                 "apps/api/src/assets"
-              ]
+              ],
+              "webpackConfig": "apps/api/webpack.config.js"
             },
             "configurations": {
               "production": {
@@ -321,32 +331,23 @@
               "{workspaceRoot}/.eslintrc.json"
             ],
             "cache": true
-          },
-          "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": [
-              "{workspaceRoot}/coverage/{projectRoot}"
-            ],
-            "options": {
-              "jestConfig": "apps/api/jest.config.ts",
-              "passWithNoTests": true
-            },
-            "configurations": {
-              "ci": {
-                "ci": true,
-                "coverageReporters": [
-                  "text"
-                ]
-              }
-            },
-            "parallelism": true,
-            "inputs": [
-              "default",
-              "^production",
-              "{workspaceRoot}/jest.preset.js"
-            ],
-            "cache": true
           }
+        },
+        "sourceRoot": "apps/api/src",
+        "name": "api",
+        "tags": [
+          "npm:public",
+          "scope:api",
+          "type:application"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "dev",
+              "start"
+            ]
+          },
+          "description": "Blacktop Blackout API - Core backend services"
         },
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "projectType": "application",
@@ -6214,6 +6215,15 @@
         "hash": "sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w=="
       }
     },
+    "npm:type-fest@4.41.0": {
+      "type": "npm",
+      "name": "npm:type-fest@4.41.0",
+      "data": {
+        "version": "4.41.0",
+        "packageName": "type-fest",
+        "hash": "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="
+      }
+    },
     "npm:type-fest": {
       "type": "npm",
       "name": "npm:type-fest",
@@ -6653,6 +6663,15 @@
         "version": "4.25.1",
         "packageName": "browserslist",
         "hash": "sha512-KGj0KoOMXLpSNkkEI6Z6mShmQy0bc1I+T7K9N81k4WWMrfz+6fQ6es80B/YLAeRoKvjYE1YSHHOW1qe9xIVzHw=="
+      }
+    },
+    "npm:bs-logger": {
+      "type": "npm",
+      "name": "npm:bs-logger",
+      "data": {
+        "version": "0.2.6",
+        "packageName": "bs-logger",
+        "hash": "sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog=="
       }
     },
     "npm:bser": {
@@ -9119,6 +9138,15 @@
         "version": "2.0.1",
         "packageName": "handle-thing",
         "hash": "sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg=="
+      }
+    },
+    "npm:handlebars": {
+      "type": "npm",
+      "name": "npm:handlebars",
+      "data": {
+        "version": "4.7.8",
+        "packageName": "handlebars",
+        "hash": "sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ=="
       }
     },
     "npm:harmony-reflect": {
@@ -13144,6 +13172,15 @@
         "hash": "sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA=="
       }
     },
+    "npm:ts-jest": {
+      "type": "npm",
+      "name": "npm:ts-jest",
+      "data": {
+        "version": "29.4.1",
+        "packageName": "ts-jest",
+        "hash": "sha512-SaeUtjfpg9Uqu8IbeDKtdaS0g8lS6FT6OzM3ezrDfErPJPHNDo/Ey+VFGP1bQIDfagYDLyRpd7O15XpG1Es2Uw=="
+      }
+    },
     "npm:ts-loader": {
       "type": "npm",
       "name": "npm:ts-loader",
@@ -13232,6 +13269,15 @@
         "version": "0.0.6",
         "packageName": "typedarray",
         "hash": "sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA=="
+      }
+    },
+    "npm:uglify-js": {
+      "type": "npm",
+      "name": "npm:uglify-js",
+      "data": {
+        "version": "3.19.3",
+        "packageName": "uglify-js",
+        "hash": "sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ=="
       }
     },
     "npm:undici-types": {
@@ -13592,6 +13638,15 @@
         "version": "1.2.5",
         "packageName": "word-wrap",
         "hash": "sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA=="
+      }
+    },
+    "npm:wordwrap": {
+      "type": "npm",
+      "name": "npm:wordwrap",
+      "data": {
+        "version": "1.0.0",
+        "packageName": "wordwrap",
+        "hash": "sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q=="
       }
     },
     "npm:wrap-ansi-cjs": {
@@ -14041,6 +14096,11 @@
       {
         "source": "api",
         "target": "npm:axios",
+        "type": "static"
+      },
+      {
+        "source": "api",
+        "target": "npm:@nx/webpack",
         "type": "static"
       }
     ],
@@ -23494,6 +23554,13 @@
         "type": "static"
       }
     ],
+    "npm:bs-logger": [
+      {
+        "source": "npm:bs-logger",
+        "target": "npm:fast-json-stable-stringify",
+        "type": "static"
+      }
+    ],
     "npm:bser": [
       {
         "source": "npm:bser",
@@ -26023,6 +26090,33 @@
       {
         "source": "npm:fast-glob@3.3.3",
         "target": "npm:micromatch",
+        "type": "static"
+      }
+    ],
+    "npm:handlebars": [
+      {
+        "source": "npm:handlebars",
+        "target": "npm:minimist",
+        "type": "static"
+      },
+      {
+        "source": "npm:handlebars",
+        "target": "npm:neo-async",
+        "type": "static"
+      },
+      {
+        "source": "npm:handlebars",
+        "target": "npm:source-map",
+        "type": "static"
+      },
+      {
+        "source": "npm:handlebars",
+        "target": "npm:wordwrap",
+        "type": "static"
+      },
+      {
+        "source": "npm:handlebars",
+        "target": "npm:uglify-js",
         "type": "static"
       }
     ],
@@ -31294,6 +31388,88 @@
       {
         "source": "npm:ts-api-utils",
         "target": "npm:typescript",
+        "type": "static"
+      }
+    ],
+    "npm:ts-jest": [
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:@babel/core",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:@jest/transform",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:@jest/types",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:babel-jest",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:jest",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:jest-util",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:typescript",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:bs-logger",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:fast-json-stable-stringify",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:handlebars",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:json5",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:lodash.memoize",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:make-error",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:semver",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:type-fest@4.41.0",
+        "type": "static"
+      },
+      {
+        "source": "npm:ts-jest",
+        "target": "npm:yargs-parser",
         "type": "static"
       }
     ],

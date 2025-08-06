@@ -1,0 +1,187 @@
+asset main.js 112 KiB [emitted] (name: main) 1 related asset
+asset package-lock.json 85.9 KiB [emitted]
+asset package.json 1.06 KiB [emitted]
+runtime modules 123 bytes 1 module
+cacheable modules 107 KiB
+  modules by path ./apps/api/src/routes/*.ts 39.5 KiB
+    ./apps/api/src/routes/auth.ts 6.46 KiB [built] [code generated]
+    + 5 modules
+  modules by path ./apps/api/src/services/*.ts 27.9 KiB
+    ./apps/api/src/services/plugin-manager.ts 9.85 KiB [built] [code generated]
+    + 2 modules
+  modules by path ./apps/api/src/middleware/*.ts 16 KiB
+    ./apps/api/src/middleware/error-handler.ts 8.57 KiB [built] [code generated]
+    ./apps/api/src/middleware/auth.ts 7.47 KiB [built] [code generated]
+  ./apps/api/src/main.ts 5.08 KiB [built] [code generated]
+  ./apps/api/src/utils/logger.ts 2.11 KiB [built] [code generated]
+  ./apps/api/src/database/schema.ts 16.5 KiB [built] [code generated]
++ 20 modules
+
+ERROR in ./apps/api/src/routes/business-logic.ts 5:19-48
+Module not found: Error: Can't resolve '../config/database' in '/workspace/apps/api/src/routes'
+ @ ./apps/api/src/main.ts 24:49-83
+
+ERROR in ./apps/api/src/routes/overwatch.ts 5:19-48
+Module not found: Error: Can't resolve '../config/database' in '/workspace/apps/api/src/routes'
+ @ ./apps/api/src/main.ts 22:44-73
+
+ERROR in unable to locate '/workspace/apps/api/src/assets/**/*' glob
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m84:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 82 |[39m     [36mif[39m (error [36minstanceof[39m jwt[33m.[39m[33mJsonWebTokenError[39m) {
+   [90m 83 |[39m       logger[33m.[39mwarn([32m'Invalid JWT token'[39m[33m,[39m { error[33m:[39m error[33m.[39mmessage })[33m;[39m
+  [31m[1m>[22m[39m[90m 84 |[39m       [36mreturn[39m res[33m.[39mstatus([35m401[39m)[33m.[39mjson({
+   [90m    |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 85 |[39m         error[33m:[39m [32m'Unauthorized'[39m[33m,[39m
+   [90m 86 |[39m         message[33m:[39m [32m'Invalid token'[39m[33m,[39m
+   [90m 87 |[39m         code[33m:[39m [32m'INVALID_TOKEN'[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m93:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 91 |[39m     [36mif[39m (error [36minstanceof[39m [33mAuthError[39m) {
+   [90m 92 |[39m       logger[33m.[39mwarn([32m'Authentication failed'[39m[33m,[39m { error[33m:[39m error[33m.[39mmessage[33m,[39m code[33m:[39m error[33m.[39mcode })[33m;[39m
+  [31m[1m>[22m[39m[90m 93 |[39m       [36mreturn[39m res[33m.[39mstatus(error[33m.[39mstatusCode)[33m.[39mjson({
+   [90m    |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 94 |[39m         error[33m:[39m [32m'Unauthorized'[39m[33m,[39m
+   [90m 95 |[39m         message[33m:[39m error[33m.[39mmessage[33m,[39m
+   [90m 96 |[39m         code[33m:[39m error[33m.[39mcode[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m114:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 112 |[39m   [36mreturn[39m (req[33m:[39m [33mAuthenticatedRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m)[33m:[39m [36mvoid[39m [33m=>[39m {
+   [90m 113 |[39m     [36mif[39m ([33m![39mreq[33m.[39muser) {
+  [31m[1m>[22m[39m[90m 114 |[39m       [36mreturn[39m res[33m.[39mstatus([35m401[39m)[33m.[39mjson({
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 115 |[39m         error[33m:[39m [32m'Unauthorized'[39m[33m,[39m
+   [90m 116 |[39m         message[33m:[39m [32m'Authentication required'[39m
+   [90m 117 |[39m       })[33m;[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m129:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 127 |[39m       })[33m;[39m
+   [90m 128 |[39m       
+  [31m[1m>[22m[39m[90m 129 |[39m       [36mreturn[39m res[33m.[39mstatus([35m403[39m)[33m.[39mjson({
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 130 |[39m         error[33m:[39m [32m'Forbidden'[39m[33m,[39m
+   [90m 131 |[39m         message[33m:[39m [32m'Insufficient permissions'[39m[33m,[39m
+   [90m 132 |[39m         requiredRoles[33m:[39m roles[33m,[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m147:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 145 |[39m   [36mreturn[39m (req[33m:[39m [33mAuthenticatedRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m)[33m:[39m [36mvoid[39m [33m=>[39m {
+   [90m 146 |[39m     [36mif[39m ([33m![39mreq[33m.[39muser) {
+  [31m[1m>[22m[39m[90m 147 |[39m       [36mreturn[39m res[33m.[39mstatus([35m401[39m)[33m.[39mjson({
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 148 |[39m         error[33m:[39m [32m'Unauthorized'[39m[33m,[39m
+   [90m 149 |[39m         message[33m:[39m [32m'Authentication required'[39m
+   [90m 150 |[39m       })[33m;[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m164:7[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 162 |[39m       })[33m;[39m
+   [90m 163 |[39m       
+  [31m[1m>[22m[39m[90m 164 |[39m       [36mreturn[39m res[33m.[39mstatus([35m403[39m)[33m.[39mjson({
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 165 |[39m         error[33m:[39m [32m'Forbidden'[39m[33m,[39m
+   [90m 166 |[39m         message[33m:[39m [32m'Insufficient permissions'[39m[33m,[39m
+   [90m 167 |[39m         requiredPermissions[33m:[39m permissions[33m,[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m179:5[22m[39m
+[90mTS2322: [39mType 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+  [0m [90m 177 |[39m [36mexport[39m [36mconst[39m requireCompanyAccess [33m=[39m (req[33m:[39m [33mAuthenticatedRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m)[33m:[39m [36mvoid[39m [33m=>[39m {
+   [90m 178 |[39m   [36mif[39m ([33m![39mreq[33m.[39muser[33m?[39m[33m.[39mcompanyId) {
+  [31m[1m>[22m[39m[90m 179 |[39m     [36mreturn[39m res[33m.[39mstatus([35m403[39m)[33m.[39mjson({
+   [90m     |[39m     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 180 |[39m       error[33m:[39m [32m'Forbidden'[39m[33m,[39m
+   [90m 181 |[39m       message[33m:[39m [32m'Company access required'[39m
+   [90m 182 |[39m     })[33m;[39m[0m
+
+ERROR in ./apps/api/src/middleware/auth.ts:[32m[1m193:14[22m[39m
+[90mTS2769: [39mNo overload matches this call.
+  Overload 1 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: null, options?: SignOptions & { algorithm: "none"; }): string', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'null'.
+  Overload 2 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: Secret | JsonWebKeyInput | PrivateKeyInput, options?: SignOptions): string', gave the following error.
+    Type 'string' is not assignable to type 'number | StringValue'.
+  Overload 3 of 5, '(payload: string | object | Buffer, secretOrPrivateKey: Secret | JsonWebKeyInput | PrivateKeyInput, callback: SignCallback): void', gave the following error.
+    Object literal may only specify known properties, and 'expiresIn' does not exist in type 'SignCallback'.
+  [0m [90m 191 |[39m [90m// Utility functions for JWT operations[39m
+   [90m 192 |[39m [36mexport[39m [36mconst[39m generateToken [33m=[39m (payload[33m:[39m [33mOmit[39m[33m<[39m[33mJWTPayload[39m[33m,[39m [32m'iat'[39m [33m|[39m [32m'exp'[39m[33m>[39m)[33m:[39m string [33m=>[39m {
+  [31m[1m>[22m[39m[90m 193 |[39m   [36mreturn[39m jwt[33m.[39msign(payload[33m,[39m [33mJWT_SECRET[39m[33m,[39m {
+   [90m     |[39m              [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 194 |[39m     expiresIn[33m:[39m [33mJWT_EXPIRES_IN[39m[33m,[39m
+   [90m 195 |[39m     issuer[33m:[39m [32m'blacktop-blackout'[39m[33m,[39m
+   [90m 196 |[39m     audience[33m:[39m [32m'blacktop-users'[39m[0m
+
+ERROR in ./apps/api/src/routes/business-logic.ts:[32m[1m3:22[22m[39m
+[90mTS2307: [39mCannot find module '../config/database' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m { [33mRouter[39m } [36mfrom[39m [32m'express'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { asyncHandler } [36mfrom[39m [32m'../middleware/error-handler'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { pool } [36mfrom[39m [32m'../config/database'[39m[33m;[39m
+   [90m   |[39m                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m
+   [90m 5 |[39m [36mconst[39m router [33m=[39m [33mRouter[39m()[33m;[39m
+   [90m 6 |[39m[0m
+
+ERROR in ./apps/api/src/routes/overwatch.ts:[32m[1m3:22[22m[39m
+[90mTS2307: [39mCannot find module '../config/database' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m { [33mRouter[39m } [36mfrom[39m [32m'express'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { asyncHandler } [36mfrom[39m [32m'../middleware/error-handler'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { pool } [36mfrom[39m [32m'../config/database'[39m[33m;[39m
+   [90m   |[39m                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m [36mimport[39m { weatherService } [36mfrom[39m [32m'../services/weatherService'[39m[33m;[39m
+   [90m 5 |[39m
+   [90m 6 |[39m [36mconst[39m router [33m=[39m [33mRouter[39m()[33m;[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m235:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 233 |[39m       logger[33m:[39m {
+   [90m 234 |[39m         [33m...[39mlogger[33m,[39m
+  [31m[1m>[22m[39m[90m 235 |[39m         info[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39minfo([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 236 |[39m         error[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39merror([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m 237 |[39m         warn[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mwarn([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m 238 |[39m         debug[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mdebug([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m236:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 234 |[39m         [33m...[39mlogger[33m,[39m
+   [90m 235 |[39m         info[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39minfo([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+  [31m[1m>[22m[39m[90m 236 |[39m         error[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39merror([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 237 |[39m         warn[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mwarn([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m 238 |[39m         debug[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mdebug([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)
+   [90m 239 |[39m       }[33m,[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m237:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 235 |[39m         info[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39minfo([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m 236 |[39m         error[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39merror([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+  [31m[1m>[22m[39m[90m 237 |[39m         warn[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mwarn([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 238 |[39m         debug[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mdebug([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)
+   [90m 239 |[39m       }[33m,[39m
+   [90m 240 |[39m       database[33m:[39m [36mnull[39m[33m,[39m [90m// TODO: Provide restricted database access[39m[0m
+
+ERROR in ./apps/api/src/services/plugin-manager.ts:[32m[1m238:9[22m[39m
+[90mTS2322: [39mType '(message: string, meta?: any) => winston.Logger' is not assignable to type 'LeveledLogMethod'.
+  Types of parameters 'message' and 'infoObject' are incompatible.
+    Type 'object' is not assignable to type 'string'.
+  [0m [90m 236 |[39m         error[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39merror([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+   [90m 237 |[39m         warn[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mwarn([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)[33m,[39m
+  [31m[1m>[22m[39m[90m 238 |[39m         debug[33m:[39m (message[33m:[39m string[33m,[39m meta[33m?[39m[33m:[39m any) [33m=>[39m logger[33m.[39mdebug([32m`[${pluginName}] ${message}`[39m[33m,[39m meta)
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 239 |[39m       }[33m,[39m
+   [90m 240 |[39m       database[33m:[39m [36mnull[39m[33m,[39m [90m// TODO: Provide restricted database access[39m
+   [90m 241 |[39m       config[33m:[39m {}[33m,[39m[0m
+
+2 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 17 errors in 1969 ms
