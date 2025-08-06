@@ -39,16 +39,21 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       href: '/overwatch', 
       icon: Eye 
     },
-    { 
-      name: translate('Gemini Estimator Pro', 'AI Estimator'), 
-      href: '/gemini-estimator', 
-      icon: Brain 
-    },
-    { 
-      name: translate('Analytics', 'Analytics'), 
-      href: '/analytics', 
-      icon: BarChart3 
-    },
+          {
+        name: translate('Gemini Estimator Pro', 'AI Estimator'),
+        href: '/gemini-estimator',
+        icon: Brain
+      },
+      {
+        name: translate('Business Logic', 'Logic Management'),
+        href: '/business-logic',
+        icon: Settings
+      },
+      {
+        name: translate('Analytics', 'Analytics'),
+        href: '/analytics',
+        icon: BarChart3
+      },
     { 
       name: translate('Fleet', 'Fleet'), 
       href: '/fleet', 

@@ -19,6 +19,7 @@ import userRoutes from './routes/users';
 import moduleRoutes from './routes/modules';
 import overwatchRoutes from './routes/overwatch';
 import pluginRoutes from './routes/plugins';
+import businessLogicRoutes from './routes/business-logic';
 
 dotenv.config();
 
@@ -85,6 +86,7 @@ app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/modules', authMiddleware, moduleRoutes);
 app.use('/api/overwatch', authMiddleware, overwatchRoutes);
 app.use('/api/plugins', authMiddleware, pluginRoutes);
+app.use('/api/business-logic', authMiddleware, businessLogicRoutes);
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {

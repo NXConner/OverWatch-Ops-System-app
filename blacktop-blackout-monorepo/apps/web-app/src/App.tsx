@@ -9,6 +9,7 @@ import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
 import { OverWatch } from './pages/OverWatch'
 import { GeminiEstimator } from './pages/GeminiEstimator'
+import { BusinessLogic } from './pages/BusinessLogic'
 import { Analytics } from './pages/Analytics'
 import { Fleet } from './pages/Fleet'
 import { Materials } from './pages/Materials'
@@ -41,16 +42,17 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <Layout>
-                          <Routes>
-                            <Route index element={<Dashboard />} />
-                            <Route path="/overwatch" element={<OverWatch />} />
-                            <Route path="/gemini-estimator" element={<GeminiEstimator />} />
-                            <Route path="/analytics" element={<Analytics />} />
-                            <Route path="/fleet" element={<Fleet />} />
-                            <Route path="/materials" element={<Materials />} />
-                            <Route path="/employees" element={<Employees />} />
-                            <Route path="/settings" element={<Settings />} />
-                          </Routes>
+                                    <Routes>
+            <Route index element={<Dashboard />} />
+            <Route path="/overwatch" element={<OverWatch />} />
+            <Route path="/gemini-estimator" element={<GeminiEstimator />} />
+            <Route path="/business-logic" element={<BusinessLogic />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/fleet" element={<Fleet />} />
+            <Route path="/materials" element={<Materials />} />
+            <Route path="/employees" element={<Employees />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
                         </Layout>
                       </ProtectedRoute>
                     }
