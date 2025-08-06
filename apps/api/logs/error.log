@@ -1,6 +1,0 @@
-2025-08-06 11:49:14 [error]: Failed to initialize database: password authentication failed for user "postgres" {"length":104,"name":"error","severity":"FATAL","code":"28P01","file":"auth.c","line":"321","routine":"auth_failed"}
-error: password authentication failed for user "postgres"
-    at /workspace/blacktop-blackout-monorepo/node_modules/pg-pool/index.js:45:11
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async DatabaseServiceClass.initialize (/workspace/blacktop-blackout-monorepo/apps/api/dist/services/database.js:37:28)
-    at async bootstrap (/workspace/blacktop-blackout-monorepo/apps/api/dist/main.js:107:9)

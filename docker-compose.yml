@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database with PostGIS
+  database:
+    image: postgis/postgis:15-3.3
+    container_name: blacktop-database
+    environment:
+      POSTGRES_DB: blacktop_blackout_production
+      POSTGRES_USER: blacktop
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password_change_this}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./apps/api/init-db.js:/docker-entrypoint-initdb.d/01-init-schema.js
+      - ./apps/api/init-db-extended.js:/docker-entrypoint-initdb.d/02-init-extended.js
+    networks:
+      - blacktop-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U blacktop -d blacktop_blackout_production"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Cache (Optional)
+  redis:
+    image: redis:7-alpine
+    container_name: blacktop-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - blacktop-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Blacktop Blackout API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: blacktop-api
+    environment:
+      NODE_ENV: production
+      API_PORT: 3333
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: blacktop_blackout_production
+      DB_USER: blacktop
+      DB_PASSWORD: ${DB_PASSWORD:-secure_password_change_this}
+      JWT_SECRET: ${JWT_SECRET:-change-this-in-production-minimum-32-characters}
+      JWT_EXPIRES_IN: 8h
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      WEATHER_API_KEY: ${WEATHER_API_KEY:-demo-key}
+      MAPS_API_KEY: ${MAPS_API_KEY:-demo-key}
+    ports:
+      - "3333:3333"
+    volumes:
+      - uploads_data:/app/uploads
+      - logs_data:/app/logs
+    networks:
+      - blacktop-network
+    depends_on:
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  # Web Application (Nginx serving React build)
+  web:
+    image: nginx:alpine
+    container_name: blacktop-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./dist/apps/web-app:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    networks:
+      - blacktop-network
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # File Upload Service (Optional - for handling large files)
+  file-service:
+    image: nginx:alpine
+    container_name: blacktop-files
+    ports:
+      - "8080:80"
+    volumes:
+      - uploads_data:/usr/share/nginx/html/uploads
+      - ./nginx-files.conf:/etc/nginx/nginx.conf
+    networks:
+      - blacktop-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  uploads_data:
+    driver: local
+  logs_data:
+    driver: local
+
+networks:
+  blacktop-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
